@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import axios from "axios";
 import type IUser from "../../../../@Types/user";

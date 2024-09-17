@@ -1,9 +1,10 @@
-import { Navigate } from "react-router-dom";
+
 import type { IProduct } from "../../@Types";
 import { useEffect, useState } from "react";
 import "./CartPage.scss";
 import axios from "axios";
 import ProductElm from "./ProductElm/ProductElm";
+import ICart from "../../@Types/cart";
 
 interface CartPageProps {
   products: IProduct[] | null;
@@ -25,12 +26,13 @@ function CartPage({
   // console.log(cartList);
 
   useEffect(() => {
-    const headers = localStorage.getItem("token");
 
     const fetchCartList = async () => {
       try {
-        const result = await axios.get(`${API_URL}carts`, { headers });
-        setProductCart(result.data.map((data) => data.productId));
+        const result = await axios.get(`${API_URL}carts`);
+        console.log("#DEV# ",result.data);
+        
+        setProductCart(result.data.map((data: ICart) => data.productId));
       } catch (error) {
         console.log(error);
         setIsLogged(false);
@@ -41,7 +43,7 @@ function CartPage({
     };
 
     fetchCartList();
-  }, [setIsLogged, setUSername]);
+  }, []);
 
   useEffect(() => {
     const cartList = products?.filter((product) =>
