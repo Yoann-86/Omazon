@@ -1,0 +1,39 @@
+@import '../../../assets/variables.scss';
+
+
+.product-elm{
+  display: flex;
+  flex-direction: column;
+
+  .flex-stretch{
+    display: flex;
+  }
+
+  &--details{
+    display: flex;
+    gap: 24px;
+    width: 100%;
+
+    img{
+      height: 100px;
+    }
+  }
+
+  &--price{
+    font: $heading-s;
+  }
+  
+  .separator{
+    width: 100%;
+    &:before{
+      content: "";
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: $main-low;
+      position: relative;
+      top: -12px;
+    }
+
+  }
+}

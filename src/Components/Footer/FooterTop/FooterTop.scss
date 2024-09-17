@@ -1,0 +1,18 @@
+@import '../../../assets/variables.scss';
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $main-medium;
+  height: 48px;
+
+  &--btn {
+    font: $text-s-bold;
+    color: $main-lowest;
+  
+    // &:hover {
+      
+    // }
+  }
+}

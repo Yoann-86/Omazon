@@ -1,0 +1,58 @@
+@use './reset.scss';
+@import './assets/variables.scss';
+
+*{
+  font-family: "amazon-ember-400";
+
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.button-reset{
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.button-add-cart{
+
+    height: 36px;
+    padding-inline: 16px;
+    border-radius: 36px;
+    font: $text-s-regular;
+    color: $main-higher;
+    background-color: $button-primary-default-background;
+    border: 1px solid $button-primary-default-border;
+    cursor: pointer;
+
+    &:hover{
+      background-color: $button-primary-hover-background;
+      border: 1px solid $button-primary-hover-border;
+    }
+  
+}
+
+.price-component{
+  
+    height: 48px;
+    width: 110px;
+    padding-inline: 8px;
+
+    p{
+      font: $price-xl-regular;
+      color: $main-highest;
+
+      .separator{
+        font: $text-xs-regular;
+      }
+
+      .decimal{
+        font: $text-s-regular;
+      }
+    }
+  
+}

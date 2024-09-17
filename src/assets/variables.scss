@@ -1,0 +1,82 @@
+
+
+//* Colors
+
+// main colors
+$main-lowest: #ffffff;
+$main-lower: #f5f5f5;
+$main-low: #e6e6e6;
+$main-medium: #37475a;
+$main-high: #232f3e;
+$main-higher: #131921;
+$main-highest: #000000;
+
+// brand colors
+$brand-primary: #ff9900;
+$brand-grey: #6f7373;
+
+// info colors
+$info-lower: #c8f3fa;
+$info-low: #66aab6;
+$info-medium: #007185;
+$info-high: #005a6a;
+$info-higher: #004450;
+
+// danger colors
+$danger-lowest: #fad0c8;
+$danger-low: #e06d88;
+$danger-medium: #cc0c39;
+$danger-high: #a30a2e;
+
+// button colors
+$button-primary-default-background: #ff9900;
+$button-primary-default-border: #e58a00;
+$button-primary-hover-background: #ffb84d;
+$button-primary-hover-border: #ffad33;
+$button-primary-active-background: #ff9900;
+$button-primary-active-border: #007185;
+
+// transparency
+$transparency-invisible: rgba(0, 0, 0, 0);
+$transparency-mask: rgba(0, 0, 0, 0.04);
+$transparency-overlay: rgba(0, 0, 0, 0.6);
+
+
+@font-face {
+  font-family: 'amazon-ember-400';
+  src: url('/fonts/amazon-ember-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'amazon-ember-500';
+  src: url('/fonts/amazon-ember-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'amazon-ember-700';
+  src: url('/fonts/amazon-ember-700.woff2') format('woff2');
+}
+
+//* Text styles
+
+// Heading
+$heading-m: 26px/48px "amazon-ember-700" ;
+$heading-s: 21px/24px "amazon-ember-700";
+
+// Text
+$text-m-regular: 16px/24px "amazon-ember-400";
+$text-m-medium: 16px/24px "amazon-ember-500";
+$text-m-bold: 16px/24px "amazon-ember-700";
+$text-s-regular: 13px/24px "amazon-ember-400";
+$text-s-bold: 13px/24px "amazon-ember-700";
+$text-xs-regular: 10px/24px "amazon-ember-400";
+
+// Menu
+$menu-m-bold: 13px/24px "amazon-ember-700";
+$menu-s-regular: 10px "amazon-ember-400";
+
+// Prices
+$price-xl-regular: 34px/36px "amazon-ember-400";
+
+
+//* Effects
+
+$dropdown-effect: 0 2px 4px 0 rgba(0,0,0,0.13)

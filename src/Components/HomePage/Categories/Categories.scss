@@ -1,0 +1,15 @@
+@import '../../../assets/variables.scss';
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &--list {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 48px;
+    column-gap: 24px;
+  }
+}
+
