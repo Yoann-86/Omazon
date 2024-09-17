@@ -49,7 +49,7 @@ function LoginForm({
 
       handleLogin(loggedUser);
     } catch (error) {
-      console.log("Erreur renvoyée par le serveur ", (error as IError).message);
+      console.error("Erreur renvoyée par le serveur ", (error as IError).message);
       if ((error as IError).status === 401) {
         return setMessage("Erreur d'authentification");
       }
@@ -129,7 +129,7 @@ function LoginForm({
                     <div className="is-logged--profile">
                       <div className="left">
                         <figure>
-                          <img src="/icons/user.svg" alt="" />
+                          <img src="/Omazon/icons/user.svg" alt="" />
                           <div className="img-background" />
                         </figure>
 
@@ -144,7 +144,7 @@ function LoginForm({
                       </div>
                       <button type="button" className="button-reset right">
                         <p>Gérer les profils</p>
-                        <img src="/icons/chevron-right.svg" alt="" />
+                        <img src="/Omazon/icons/chevron-right.svg" alt="" />
                       </button>
                     </div>
                     <button

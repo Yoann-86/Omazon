@@ -5,7 +5,7 @@ function HeaderLogo() {
   return (
     <h1>
       <Link to="/">
-        <img src="/logos/omazon.svg" alt="paizjd" />
+        <img src="/Omazon/logos/omazon.svg" alt="paizjd" />
       </Link>
     </h1>
   );

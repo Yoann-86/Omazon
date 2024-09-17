@@ -109,7 +109,7 @@ function HeaderForm({ categories, products }: HeaderFormProps) {
         </dialog>
       </div>
       <button className="form-button" type="button">
-        <img src="/icons/search.svg" alt="" />
+        <img src="/Omazon/icons/search.svg" alt="" />
       </button>
     </form>
   );

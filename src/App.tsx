@@ -59,7 +59,6 @@ function App() {
 
   // Check authentication
   useEffect(() => {
-    console.log(isLogged);
 
     const userAuthenticate = localStorage.getItem("token");
     const userFirstName = localStorage.getItem("firstName");

@@ -43,7 +43,7 @@ function HeaderMenu({
             <p className="account--frame1-text">Compte et listes</p>
             <img
               className="account--frame1-img"
-              src="/icons/caret-down.svg"
+              src="/Omazon/icons/caret-down.svg"
               alt=""
             />
           </button>
@@ -59,7 +59,7 @@ function HeaderMenu({
       </div>
       <Link to="/cart" className="cart">
         <div className="cart-icon">
-          <img className="cart-icon--img" src="/icons/cart.svg" alt="" />
+          <img className="cart-icon--img" src="/Omazon/icons/cart.svg" alt="" />
           <p
             className={
               count > 9 ? "cart-icon--count count-more" : "cart-icon--count"

@@ -23,18 +23,16 @@ function CartPage({
   const [productCart, setProductCart] = useState<number[]>([]);
   const [productList, setProductList] = useState<IProduct[]>([]);
 
-  // console.log(cartList);
 
   useEffect(() => {
 
     const fetchCartList = async () => {
       try {
         const result = await axios.get(`${API_URL}carts`);
-        console.log("#DEV# ",result.data);
         
         setProductCart(result.data.map((data: ICart) => data.productId));
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setIsLogged(false);
         localStorage.removeItem("token");
         localStorage.removeItem("firstName");
@@ -50,7 +48,6 @@ function CartPage({
       productCart.includes(product.id),
     );
     if (cartList && cartList?.length > 0) setProductList(cartList);
-    console.log(cartList);
   }, [products, productCart]);
 
   return (
