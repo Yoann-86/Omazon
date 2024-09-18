@@ -1,16 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./App.scss";
-import type { ICategory, IProduct, ITag } from "./@Types/index";
-
+import Header from "./Components/Header/Header";
 import HomePage from "./Components/HomePage/HomePage";
 import ProductPage from "./Components/ProductPage/ProductPage";
 import Error404 from "./Components/Error404/Error404";
 import CategoryPage from "./Components/CategoryPage/CategoryPage";
 import CartPage from "./Components/CartPage/CartPage";
-import Header from "./Components/Header/Header";
+import actionAsyncFetchProducts from "./Components/store/middlewares/thunkFetchProducts";
+import type { AppDispatch, RootState } from "./Components/store/store";
+import actionAsyncFetchCategories from "./Components/store/middlewares/thunkFetchCategories";
+import actionAsyncFetchCart from "./Components/store/middlewares/thunkFetchCarts";
+import actionAsyncFetchTags from "./Components/store/middlewares/thunkFetchTags";
 import Footer from "./Components/Footer/Footer";
 
 //todo :
@@ -18,116 +21,49 @@ import Footer from "./Components/Footer/Footer";
 // Fakestoreapi.com
 
 function App() {
-  //* Environment
-  const API_URL = import.meta.env.VITE_API_URL;
+  // Hooks
+  const dispatch: AppDispatch = useDispatch();
 
-  //* States
-  // Data
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [tags, setTags] = useState<ITag[]>([]);
-  // Cart
-  const [cartProducts, setCartProducts] = useState<number[]>([]);
-  // User
-  const [isLogged, setIsLogged] = useState(false);
-  const [userName, setUSername] = useState("");
+  // Store states
+  const userId = useSelector(
+    (state: RootState) => state.appStore.login.user.id,
+  );
+  const cartProductsCount = useSelector(
+    (state: RootState) =>
+      state.cartStore.cart.filter((cart) => cart.userId === userId).length,
+  );
+  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
 
-  //* Variables
-  const cartProductsCount = cartProducts.length;
-
-  //* Effects
-  // Fetch datas
+  // Effects [fetch datas]
   useEffect(() => {
-    const fetchCategories = async () => {
-      const result = await axios.get(`${API_URL}categories`);
-      setCategories(result.data);
-    };
+    dispatch(actionAsyncFetchProducts());
+    dispatch(actionAsyncFetchCategories());
+    dispatch(actionAsyncFetchTags());
+  }, [dispatch]);
 
-    const fetchProducts = async () => {
-      const result = await axios.get(`${API_URL}products`);
-      setProducts(result.data);
-    };
-
-    const fetchTags = async () => {
-      const result = await axios.get(`${API_URL}tags`);
-      setTags(result.data);
-    };
-
-    fetchCategories();
-    fetchProducts();
-    fetchTags();
-  }, []);
-
-  // Check authentication
   useEffect(() => {
+    if (isLogged) dispatch(actionAsyncFetchCart());
+  }, [dispatch, isLogged]);
 
-    const userAuthenticate = localStorage.getItem("token");
-    const userFirstName = localStorage.getItem("firstName");
-    if (userAuthenticate && userFirstName) {
-      setIsLogged(true);
-      setUSername(userFirstName);
-    }
-  }, [isLogged]);
-
-  // Set Page title
+  // Effetct [Set Page title]
   useEffect(() => {
     document.title =
-      cartProductsCount > 0
+      isLogged && cartProductsCount > 0
         ? cartProductsCount === 1
           ? `Omazon (panier: ${cartProductsCount} produit)`
           : `Omazon (panier: ${cartProductsCount} produits)`
         : "Omazon";
-  }, [cartProductsCount]);
+  }, [cartProductsCount, isLogged]);
 
   //* JSX
   return (
     <>
-      <Header
-        categories={categories}
-        products={products}
-        cartCount={cartProducts.length}
-        isLogged={isLogged}
-        setIsLogged={setIsLogged}
-        userName={userName}
-        setUSername={setUSername}
-      />
+      <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              products={products}
-              categories={categories}
-              cartProducts={cartProducts}
-              addProduct={setCartProducts}
-              tags={tags}
-            />
-          }
-        />
+        <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route
-          path="/category/:slug"
-          element={
-            <CategoryPage
-              categories={categories}
-              products={products}
-              addToCart={setCartProducts}
-              cartProducts={cartProducts}
-              tags={tags}
-            />
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <CartPage
-              products={products}
-              setIsLogged={setIsLogged}
-              setUSername={setUSername}
-              isLogged={isLogged}
-            />
-          }
-        />
+        <Route path="/category/:slug" element={<CategoryPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />

@@ -1,11 +1,14 @@
-import { HashRouter} from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.scss";
-// import "dotenv/config";
+import { Provider } from "react-redux";
+import store from "./Components/store/store.ts";
 
 createRoot(document.getElementById("root")!).render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+  <Provider store={store}>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </Provider>,
 );

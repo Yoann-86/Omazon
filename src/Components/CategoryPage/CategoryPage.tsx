@@ -1,71 +1,65 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./CategoryPage.scss";
 import { useEffect, useState } from "react";
 import type IProduct from "../../@Types/product";
 import type ICategory from "../../@Types/category";
 import Product from "../HomePage/Products/Product/Product";
-import type ITag from "../../@Types/tag";
+import type { RootState } from "../store/store";
+import { useSelector } from "react-redux";
 
-interface CategoryPageProps {
-  categories: ICategory[] | null;
-  products: IProduct[] | null;
-  tags: ITag[];
-  cartProducts: number[];
-  addToCart: React.Dispatch<React.SetStateAction<number[]>>;
-}
+function CategoryPage() {
+  // Store states :
+  const categories = useSelector(
+    (state: RootState) => state.categoryStore.categories,
+  );
+  const products = useSelector(
+    (state: RootState) => state.productStore.products,
+  );
+  const tags = useSelector((state: RootState) => state.tagStore.tags);
 
-function CategoryPage({
-  categories,
-  products,
-  tags,
-  addToCart,
-  cartProducts,
-}: CategoryPageProps) {
-  const [category, setCategory] = useState<ICategory | null>(null);
-  const [productList, setProducList] = useState<IProduct[]>([]);
-  const [redirect, setRedirect] = useState(false);
+  // Component States :
+  const [currentCategory, setCurrentCategory] = useState<null | ICategory>(
+    null,
+  );
+  const [categoryProductList, setCategoryProducList] = useState<IProduct[]>([]);
 
+  // Variables :
   const params = useParams();
 
-  const handleAddToCart = (product: IProduct) => {
-    if (cartProducts.length > 0 && cartProducts.includes(product.id)) return;
-    addToCart((current) => [...current, product.id]);
-  };
-
+  // Effects :
   useEffect(() => {
     const findCategory = () => {
-      if (categories && categories.length > 0) {
+      if (categories.length > 0) {
         const findedCategory = categories.find(
           (category) => category.slug === params.slug,
         );
 
-        if (findedCategory) {
-          const filteredProducts = products?.filter(
-            (product) => product.categoryId === findedCategory.id,
-          );
-          if (filteredProducts && filteredProducts.length > 0)
-            setProducList(filteredProducts);
+        // todo => Redirect if (!findedCategory)
+        if (!findedCategory) return;
 
-          return setCategory(findedCategory);
-        }
-        setRedirect(true);
+        const filteredProducts = products?.filter(
+          (product) => product.categoryId === findedCategory?.id,
+        );
+        if (filteredProducts.length > 0)
+          setCategoryProducList(filteredProducts);
+
+        return setCurrentCategory(findedCategory);
       }
     };
 
     findCategory();
   }, [categories, products, params]);
 
-  if (redirect) return <Navigate to="/404" replace />;
+  //* JSX :
 
   return (
     <section className="category-page">
-      <h2>{category?.title}</h2>
+      <h2>{currentCategory?.title}</h2>
       <div className="product-list">
-        {productList.map((product) => (
+        {categoryProductList.map((product) => (
           <Product
             key={product.id}
             product={product}
-            addToCart={handleAddToCart}
             tag={tags.find((tag) => tag.id === product.tagId) || null}
           />
         ))}

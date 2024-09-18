@@ -2,38 +2,44 @@ import { useState } from "react";
 import "./HeaderMenu.scss";
 import LoginForm from "./LoginForm/LoginForm";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
-interface HeaderMenuProps {
-  count: number;
-  isLogged: boolean;
-  setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
-  userName: string;
-  setUSername: React.Dispatch<React.SetStateAction<string>>;
-}
+function HeaderMenu() {
+  // Store state #1
+  const userName = useSelector(
+    (state: RootState) => state.appStore.login.user.firstName,
+  );
+  // Store state #2
+  const userId = useSelector(
+    (state: RootState) => state.appStore.login.user.id,
+  );
+  // Store state #3
+  const cartCount = useSelector(
+    (state: RootState) =>
+      state.cartStore.cart.filter((cart) => cart.userId === userId).length,
+  );
+  // Store state #4
+  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
 
-function HeaderMenu({
-  count,
-  isLogged,
-  setIsLogged,
-  userName,
-  setUSername,
-}: HeaderMenuProps) {
+  // Component state #1
   const [openConnexionModal, setOpenConnexionModal] = useState(false);
 
+  // handleFunction #1
   const handleOpenModal = () => {
     openConnexionModal
       ? setOpenConnexionModal(false)
       : setOpenConnexionModal(true);
   };
 
+  // Local variable #1
   const domNode = document.getElementById("account");
 
+  //* JSX
   return (
     <div className="right-menu">
       <div className="account" id="account">
-        <p className="account-text">
-          Bonjour, {(userName.length > 0 && userName) || "identifiez-vous"}
-        </p>
+        <p className="account-text">Bonjour, {userName}</p>
         <div className="account--frame1">
           <button
             className="account--frame1-button button-reset"
@@ -51,10 +57,7 @@ function HeaderMenu({
         <LoginForm
           domNode={domNode}
           openModal={openConnexionModal}
-          isLogged={isLogged}
-          setIsLogged={setIsLogged}
-          userName={userName}
-          setUSername={setUSername}
+          toggleModal={setOpenConnexionModal}
         />
       </div>
       <Link to="/cart" className="cart">
@@ -62,10 +65,10 @@ function HeaderMenu({
           <img className="cart-icon--img" src="/Omazon/icons/cart.svg" alt="" />
           <p
             className={
-              count > 9 ? "cart-icon--count count-more" : "cart-icon--count"
+              cartCount > 9 ? "cart-icon--count count-more" : "cart-icon--count"
             }
           >
-            {count}
+            {isLogged ? cartCount : 0}
           </p>
         </div>
         <p className="cart-text">Panier</p>

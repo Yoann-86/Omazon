@@ -1,54 +1,37 @@
-
 import type { IProduct } from "../../@Types";
 import { useEffect, useState } from "react";
 import "./CartPage.scss";
-import axios from "axios";
 import ProductElm from "./ProductElm/ProductElm";
-import ICart from "../../@Types/cart";
+import type { RootState } from "../store/store";
+import { useSelector } from "react-redux";
 
-interface CartPageProps {
-  products: IProduct[] | null;
-  setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
-  setUSername: React.Dispatch<React.SetStateAction<string>>;
-  isLogged: boolean;
-}
+function CartPage() {
+  // Store state
+  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
+  const carts = useSelector((state: RootState) => state.cartStore.cart);
+  const userId = useSelector(
+    (state: RootState) => state.appStore.login.user.id,
+  );
 
-function CartPage({
-  products,
-  setIsLogged,
-  setUSername,
-  isLogged,
-}: CartPageProps) {
-  const API_URL = import.meta.env.VITE_API_URL;
-  const [productCart, setProductCart] = useState<number[]>([]);
+  const products = useSelector(
+    (state: RootState) => state.productStore.products,
+  );
+
+  // Component states
   const [productList, setProductList] = useState<IProduct[]>([]);
 
-
+  // Effects
   useEffect(() => {
+    const productCart = carts
+      .filter((cart) => cart.userId === userId)
+      .map((cart) => cart.productId);
 
-    const fetchCartList = async () => {
-      try {
-        const result = await axios.get(`${API_URL}carts`);
-        
-        setProductCart(result.data.map((data: ICart) => data.productId));
-      } catch (error) {
-        console.error(error);
-        setIsLogged(false);
-        localStorage.removeItem("token");
-        localStorage.removeItem("firstName");
-        setUSername("");
-      }
-    };
-
-    fetchCartList();
-  }, []);
-
-  useEffect(() => {
-    const cartList = products?.filter((product) =>
+    const cartProductList = products?.filter((product) =>
       productCart.includes(product.id),
     );
-    if (cartList && cartList?.length > 0) setProductList(cartList);
-  }, [products, productCart]);
+    if (cartProductList && cartProductList?.length > 0)
+      setProductList(cartProductList);
+  }, [products, carts, userId]);
 
   return (
     <section className="cart-page">
