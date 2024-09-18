@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react";
-import type ICategory from "../../../@Types/category";
-import type IProduct from "../../../@Types/product";
 import "./HeaderForm.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
-interface HeaderFormProps {
-  categories: ICategory[];
-  products: IProduct[];
-}
+function HeaderForm() {
+  // Store states
+  const products = useSelector(
+    (state: RootState) => state.productStore.products,
+  );
+  const categories = useSelector(
+    (state: RootState) => state.categoryStore.categories,
+  );
 
-function HeaderForm({ categories, products }: HeaderFormProps) {
+  // Component states
   const [filteredProductList, setFilteredProductList] = useState(products);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProductCategoryId, setFilteredProductCategoryId] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
   const [resultLength, setResultLength] = useState(0);
 
+  // Handle functions
   const handleChangeInputValue = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -33,13 +38,16 @@ function HeaderForm({ categories, products }: HeaderFormProps) {
     return setFilteredProductCategoryId(0);
   };
 
-  const closeDialog = (event: React.FocusEvent<HTMLInputElement, Element>) => {
+  const handleCloseDialog = (
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ) => {
     if (event.relatedTarget?.className === "form-result-search--finded") {
       return setTimeout(() => setOpenDialog(false), 100, 0);
     }
     return setOpenDialog(false);
   };
 
+  // Effects
   useEffect(() => {
     const categoryFilter = () => {
       if (filteredProductCategoryId === 0) {
@@ -62,6 +70,7 @@ function HeaderForm({ categories, products }: HeaderFormProps) {
     );
   }, [searchTerm, filteredProductList]);
 
+  //* JSX
   return (
     <form className="form">
       <select
@@ -87,7 +96,7 @@ function HeaderForm({ categories, products }: HeaderFormProps) {
           value={searchTerm}
           onChange={handleChangeInputValue}
           onFocus={() => setOpenDialog(true)}
-          onBlur={closeDialog}
+          onBlur={handleCloseDialog}
         />
         <dialog className="form-result-search" open={openDialog}>
           {resultLength > 0 ? (

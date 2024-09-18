@@ -1,15 +1,18 @@
-import type IProduct from "../../../@Types/product";
-import type ITag from "../../../@Types/tag";
+import { useSelector } from "react-redux";
 import Product from "./Product/Product";
 import "./Products.scss";
+import type { RootState } from "../../store/store";
 
-interface ProductsProps {
-  products: IProduct[];
-  tags: ITag[];
-  addToCart: (product: IProduct) => void;
-}
+function Products() {
+  // Store state :
+  // #1
+  const products = useSelector(
+    (state: RootState) => state.productStore.products,
+  );
+  // #2
+  const tags = useSelector((state: RootState) => state.tagStore.tags);
 
-function Products({ products, addToCart, tags }: ProductsProps) {
+  //* JSX
   return (
     <div className="products">
       <h2 className="products--title">Tous nos produits</h2>
@@ -18,7 +21,6 @@ function Products({ products, addToCart, tags }: ProductsProps) {
           <Product
             key={product.id}
             product={product}
-            addToCart={addToCart}
             tag={tags.find((tag) => tag.id === product.tagId) || null}
           />
         ))}

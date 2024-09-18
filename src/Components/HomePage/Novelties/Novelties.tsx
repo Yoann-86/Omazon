@@ -1,24 +1,21 @@
-import type IProduct from "../../../@Types/product";
 import "./Novelties.scss";
 import Product from "../Products/Product/Product";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
 
-interface NoveltiesProps {
-  products: IProduct[];
-  addToCart: (product: IProduct) => void;
-}
+function Novelties() {
+  // Store state :
+  const products = useSelector(
+    (state: RootState) => state.productStore.products,
+  );
 
-function Novelties({ products, addToCart }: NoveltiesProps) {
+  //* JSX
   return (
     <div className="novelties">
       <h2 className="novelties-title">Nouveautés</h2>
       <div className="novelties-list">
         {products.map((product) => (
-          <Product
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-            tag={null}
-          />
+          <Product key={product.id} product={product} tag={null} />
         ))}
       </div>
     </div>

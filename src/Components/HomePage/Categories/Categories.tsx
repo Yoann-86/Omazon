@@ -1,12 +1,13 @@
+import { useSelector } from "react-redux";
 import "./Categories.scss";
 import CategoryCard from "./CategoryCard/CategoryCard";
-import type ICategory from "../../../@Types/category";
+import type { RootState } from "../../store/store";
 
-interface CategoriesProps {
-  categories: ICategory[] | null;
-}
-
-function Categories({ categories }: CategoriesProps) {
+function Categories() {
+  // Store state :
+  const categories = useSelector(
+    (state: RootState) => state.categoryStore.categories,
+  );
   return (
     <div className="categories">
       <h2 className="categories--header">Catégories à l'honneur</h2>

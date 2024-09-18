@@ -2,16 +2,30 @@ import { Link } from "react-router-dom";
 import type IProduct from "../../../../@Types/product";
 import type ITag from "../../../../@Types/tag";
 import "./Product.scss";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../../store/store";
+import { addToCartAction } from "../../../store/reducers/cartReducer";
 
 interface ProductProps {
   product: IProduct;
   tag: ITag | null;
-  addToCart: (product: IProduct) => void;
 }
 
-function Product({ product, addToCart, tag }: ProductProps) {
+function Product({ product, tag }: ProductProps) {
+  // Hooks :
+  const dispatch: AppDispatch = useDispatch();
+
+  // Variables :
   const pricePrimary = product.price.toString().split(".")[0];
   const priceDecimal = product.price.toString().split(".")[1];
+
+  // Handle functions :
+  const handleAddToCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.preventDefault();
+    dispatch(addToCartAction({ productId: product.id, userId: 1 }));
+  };
 
   return (
     <div className="product-card">
@@ -41,7 +55,7 @@ function Product({ product, addToCart, tag }: ProductProps) {
         <button
           className="button-add-cart"
           type="button"
-          onClick={() => addToCart(product)}
+          onClick={handleAddToCart}
         >
           Ajouter au panier
         </button>

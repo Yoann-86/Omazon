@@ -1,37 +1,32 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
-import axios from "axios";
-import type IUser from "../../../../@Types/user";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../../store/store";
+import actionAsyncUserLogin from "../../../store/middlewares/thunkUserLogin";
+import { actionUserLogout } from "../../../store/reducers/appReducer";
 
 interface LoginFormProps {
   domNode: HTMLElement | null;
   openModal: boolean;
-  isLogged: boolean;
-  setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
-  userName: string;
-  setUSername: React.Dispatch<React.SetStateAction<string>>;
+  toggleModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface IError {
-  status: number;
-  message: string;
-}
+//todo : error messages to refactor
 
-function LoginForm({
-  domNode,
-  openModal,
-  isLogged,
-  setIsLogged,
-  setUSername,
-}: LoginFormProps) {
-  const API_URL = import.meta.env.VITE_API_URL;
+function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
+  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
+  const userFirstName = useSelector(
+    (state: RootState) => state.appStore.login.user.firstName,
+  );
+  const userLastName = useSelector(
+    (state: RootState) => state.appStore.login.user.lastName,
+  );
+  const message = useSelector((state: RootState) => state.appStore.login.error);
+  const dispatch: AppDispatch = useDispatch();
 
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const [message, setMessage] = useState("");
-  const [user, setUser] = useState<IUser>();
 
   const handleSubmitLoginForm = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -39,39 +34,18 @@ function LoginForm({
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    try {
-      const result = await axios.post(`${API_URL}login`, { email, password });
-      const loggedUser = result.data as IUser;
-      setUser(loggedUser);
-
-      handleLogin(loggedUser);
-    } catch (error) {
-      console.error("Erreur renvoyée par le serveur ", (error as IError).message);
-      if ((error as IError).status === 401) {
-        return setMessage("Erreur d'authentification");
-      }
-      if ((error as IError).status === 404) {
-        return setMessage("Erreur serveur non atteint");
-      }
-    }
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    dispatch(actionAsyncUserLogin({ email, password }));
+    toggleModal(false);
   };
 
-  const handleLogin = (user: IUser) => {
-    setMessage("");
-    setIsLogged(true);
-    setUSername(user.firstName);
-    localStorage.setItem("token", user.accessToken);
-    localStorage.setItem("firstName", user.firstName);
-  };
-
-  const handleLogout = () => {
-    setIsLogged(false);
-    setUSername("");
-    localStorage.removeItem("token");
-    localStorage.removeItem("firstName");
+  const handleLogout = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.preventDefault();
+    dispatch(actionUserLogout());
+    toggleModal(false);
   };
 
   useEffect(() => {
@@ -135,7 +109,7 @@ function LoginForm({
 
                         <div className="profil-who">
                           <p className="profil-who--name">
-                            {user?.firstName} {user?.lastName}
+                            {userFirstName} {userLastName}
                           </p>
                           <p className="profil-who--status">
                             Titulaire du compte
