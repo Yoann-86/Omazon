@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import axios from "axios";
-import type IUser from "../../../../@Types/user";
+import type IUser from "../../../../../@Types/user";
 
 interface LoginFormProps {
   domNode: HTMLElement | null;

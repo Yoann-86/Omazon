@@ -4,13 +4,14 @@ import axios from "axios";
 
 import "./App.scss";
 import type { ICategory, IProduct, ITag } from "./@Types/index";
-import Header from "./Components/Header/Header";
+
 import HomePage from "./Components/HomePage/HomePage";
-import Footer from "./Components/Footer/Footer";
 import ProductPage from "./Components/ProductPage/ProductPage";
 import Error404 from "./Components/Error404/Error404";
 import CategoryPage from "./Components/CategoryPage/CategoryPage";
 import CartPage from "./Components/CartPage/CartPage";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 
 //todo :
 // Fermer la fenetre de connexion au clic en dehors de celle-ci

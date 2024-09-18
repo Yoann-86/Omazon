@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import type ICategory from "../../@Types/category";
-import type IProduct from "../../@Types/product";
+import type ICategory from "../../../@Types/category";
+import type IProduct from "../../../@Types/product";
 import "./Header.scss";
 import HeaderForm from "./HeaderForm/HeaderForm";
 import HeaderLogo from "./HeaderLogo/HeaderLogo";
