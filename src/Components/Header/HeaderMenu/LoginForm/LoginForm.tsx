@@ -3,9 +3,9 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../../store/store";
-import actionAsyncUserLogin from "../../../store/middlewares/thunkUserLogin";
-import { actionUserLogout } from "../../../store/reducers/appReducer";
+import type { AppDispatch, RootState } from "../../../../store/store";
+import actionAsyncUserLogin from "../../../../store/middlewares/thunkUserLogin";
+import { actionUserLogout } from "../../../../store/reducers/appReducer";
 
 interface LoginFormProps {
   domNode: HTMLElement | null;

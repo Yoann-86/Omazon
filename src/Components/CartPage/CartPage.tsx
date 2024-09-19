@@ -4,6 +4,7 @@ import "./CartPage.scss";
 import ProductElm from "./ProductElm/ProductElm";
 import type { RootState } from "../store/store";
 import { useSelector } from "react-redux";
+import groupByKey from "../../utils/groupByKey";
 
 function CartPage() {
   // Store state
@@ -29,6 +30,7 @@ function CartPage() {
     const cartProductList = products?.filter((product) =>
       productCart.includes(product.id),
     );
+
     if (cartProductList && cartProductList?.length > 0)
       setProductList(cartProductList);
   }, [products, carts, userId]);

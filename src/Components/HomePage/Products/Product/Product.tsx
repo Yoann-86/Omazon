@@ -3,8 +3,8 @@ import type IProduct from "../../../../@Types/product";
 import type ITag from "../../../../@Types/tag";
 import "./Product.scss";
 import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../../store/store";
-import { addToCartAction } from "../../../store/reducers/cartReducer";
+import type { AppDispatch } from "../../../../store/store";
+import { addToCartAction } from "../../../../store/reducers/cartReducer";
 
 interface ProductProps {
   product: IProduct;

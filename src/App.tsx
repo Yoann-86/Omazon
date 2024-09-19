@@ -9,11 +9,11 @@ import ProductPage from "./Components/ProductPage/ProductPage";
 import Error404 from "./Components/Error404/Error404";
 import CategoryPage from "./Components/CategoryPage/CategoryPage";
 import CartPage from "./Components/CartPage/CartPage";
-import actionAsyncFetchProducts from "./Components/store/middlewares/thunkFetchProducts";
-import type { AppDispatch, RootState } from "./Components/store/store";
-import actionAsyncFetchCategories from "./Components/store/middlewares/thunkFetchCategories";
-import actionAsyncFetchCart from "./Components/store/middlewares/thunkFetchCarts";
-import actionAsyncFetchTags from "./Components/store/middlewares/thunkFetchTags";
+import actionAsyncFetchProducts from "./store/middlewares/thunkFetchProducts";
+import type { AppDispatch, RootState } from "./store/store";
+import actionAsyncFetchCategories from "./store/middlewares/thunkFetchCategories";
+import actionAsyncFetchCart from "./store/middlewares/thunkFetchCarts";
+import actionAsyncFetchTags from "./store/middlewares/thunkFetchTags";
 import Footer from "./Components/Footer/Footer";
 
 //todo :
