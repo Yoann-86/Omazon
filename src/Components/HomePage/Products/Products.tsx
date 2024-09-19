@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Product from "./Product/Product";
 import "./Products.scss";
-import type { RootState } from "../../store/store";
+import type { RootState } from "../../../store/store";
 
 function Products() {
   // Store state :

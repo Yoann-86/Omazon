@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { IUser } from "../../../@Types";
+import type { IUser } from "../../@Types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

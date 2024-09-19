@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import actionAsyncFetchProducts from "../middlewares/thunkFetchProducts";
-import type { IProduct } from "../../../@Types";
+import type { IProduct } from "../../@Types";
 
 interface ProductsStateApp {
   products: IProduct[];

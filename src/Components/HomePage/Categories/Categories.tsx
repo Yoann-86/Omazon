@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "./Categories.scss";
 import CategoryCard from "./CategoryCard/CategoryCard";
-import type { RootState } from "../../store/store";
+import type { RootState } from "../../../store/store";
 
 function Categories() {
   // Store state :

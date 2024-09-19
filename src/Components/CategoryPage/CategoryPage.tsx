@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type IProduct from "../../@Types/product";
 import type ICategory from "../../@Types/category";
 import Product from "../HomePage/Products/Product/Product";
-import type { RootState } from "../store/store";
+import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 
 function CategoryPage() {

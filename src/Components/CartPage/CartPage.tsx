@@ -2,7 +2,7 @@ import type { IProduct } from "../../@Types";
 import { useEffect, useState } from "react";
 import "./CartPage.scss";
 import ProductElm from "./ProductElm/ProductElm";
-import type { RootState } from "../store/store";
+import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
 import groupByKey from "../../utils/groupByKey";
 

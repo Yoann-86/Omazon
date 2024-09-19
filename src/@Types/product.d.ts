@@ -8,7 +8,7 @@ export default interface IProduct {
   image: string;
   description: string;
   categoryId: number;
-  tagId: number | null;
+  tagId: number;
 }
 
 // {
