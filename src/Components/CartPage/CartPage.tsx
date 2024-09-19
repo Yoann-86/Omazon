@@ -4,7 +4,6 @@ import "./CartPage.scss";
 import ProductElm from "./ProductElm/ProductElm";
 import type { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
-import groupByKey from "../../utils/groupByKey";
 
 function CartPage() {
   // Store state

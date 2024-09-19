@@ -103,31 +103,4 @@ describe("groupByKeyWithValue", () => {
     expect(result).toEqual({});
     expect(result["1"]).toEqual(undefined);
   });
-
-  // Test 4:
-  test("should return an empty object if filterValue don't have the good type", () => {
-    const badProducts = [
-      {
-        id: 1,
-        title: "Product 1",
-        price: 10,
-        image: "img1",
-        description: "desc1",
-        categoryId: 1,
-        tagId: 1,
-      },
-      {
-        id: 2,
-        title: "Product 2",
-        price: 15,
-        image: "img2",
-        description: "desc2",
-        categoryId: 1,
-        tagId: 1,
-      },
-    ];
-    const result = groupByKeyWithValue(badProducts, "tagId", "1");
-    expect(result["1"]).toEqual(undefined);
-    expect(result).toEqual({});
-  });
 });

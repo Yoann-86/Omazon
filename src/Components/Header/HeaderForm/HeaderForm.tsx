@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./HeaderForm.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../store/store";
+import type { RootState } from "../../../store/store";
 
 function HeaderForm() {
   // Store states
