@@ -26,6 +26,7 @@ import ProductPage from "./Components/Pages/ProductPage/ProductPage";
 import CategoryPage from "./Components/Pages/CategoryPage/CategoryPage";
 import CartPage from "./Components/Pages/Cart/CartPage";
 import Error404 from "./Components/Pages/NotFound/NotFound";
+import Layout from "./Components/Layout";
 
 //todo :
 // - Fermer la fenetre de connexion au clic en dehors de celle-ci
@@ -70,15 +71,48 @@ function App() {
   //* JSX
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/category/:slug" element={<CategoryPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="*" element={<Error404 />} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <HomePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <Layout>
+              <ProductPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/category/:slug"
+          element={
+            <Layout>
+              <CategoryPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <Error404 />
+            </Layout>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Layout>
+              <CartPage />
+            </Layout>
+          }
+        />
       </Routes>
-      <Footer />
     </>
   );
 }
