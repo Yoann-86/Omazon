@@ -1,81 +1,80 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import DOMPurify from "dompurify";
 
 import "./ProductPage.scss";
 
-import type { IProduct } from "@/@Types";
-
-// interface ProductPageProps {}
+import type { RootState } from "@/store/store";
+import AddToCartBtn from "@/Components/Common/Buttons/AddToCartBtn/AddToCartBtn";
 
 function ProductPage() {
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [redirect, setRedirect] = useState(false);
-
-  const pricePrimary = product?.price.toString().split(".")[0];
-  const priceDecimal = product?.price.toString().split(".")[1];
-
-  const API_URL = import.meta.env.VITE_API_URL;
   const params = useParams();
 
+  // Store states :
+  const product = useSelector((state: RootState) =>
+    state.productStore.products.find(
+      (product) => product.id === Number(params.id),
+    ),
+  );
+  console.log(product);
+
+  // Local variables :
+  const pricePrimary = product?.price.toString().split(".")[0];
+  const priceDecimal = product?.price.toString().split(".")[1];
   const cleanHtml = product
     ? DOMPurify.sanitize(product.description, { FORBID_TAGS: ["img"] })
     : "";
 
+  // Effects :
   useEffect(() => {
     const scrollToTop = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     };
 
-    const fetchProductData = async () => {
-      try {
-        const result = await axios.get(`${API_URL}products/${params.id}`);
-        setProduct(result.data);
-      } catch (error) {
-        console.error(error);
-        setRedirect(true);
-      }
-    };
-    fetchProductData();
     scrollToTop();
-  }, [params]);
+  }, []);
 
-  if (redirect) return <Navigate to="/404" replace />;
+  if (!product) return <Navigate to="/404" replace />;
 
   return (
     <section className="product-page">
-      <figure className="product-page--figure">
-        <img src={`${product?.image}`} alt="" />
-        <div className="img-filter" />
-      </figure>
-      <div className="product-page--description">
-        <h2>{product?.title}</h2>
-        <span />
-        <div>
-          <div className="price-component">
-            <p>
-              {pricePrimary}
-              {priceDecimal && priceDecimal.length !== 0 ? (
-                <span className="decimal">
-                  ,
-                  {priceDecimal.length === 1
-                    ? `${priceDecimal}0`
-                    : priceDecimal}
-                  €
-                </span>
-              ) : (
-                <span className="decimal">,00€</span>
-              )}
-            </p>
+      {product ? (
+        <>
+          <figure className="product-page--figure">
+            <img src={`${product.image}`} alt="" />
+            <div className="img-filter" />
+          </figure>
+          <div className="product-page--description">
+            <h2>{product?.title}</h2>
+            <span />
+            <div>
+              <div className="price-component">
+                <p>
+                  {pricePrimary}
+                  {priceDecimal && priceDecimal.length !== 0 ? (
+                    <span className="decimal">
+                      ,
+                      {priceDecimal.length === 1
+                        ? `${priceDecimal}0`
+                        : priceDecimal}
+                      €
+                    </span>
+                  ) : (
+                    <span className="decimal">,00€</span>
+                  )}
+                </p>
+              </div>
+
+              {product && <AddToCartBtn product={product} />}
+            </div>
+            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: HTML sanitized with DomPurify */}
+            <p dangerouslySetInnerHTML={{ __html: cleanHtml }} />
           </div>
-          <button type="button" className="button-add-cart">
-            Ajouter au panier
-          </button>
-        </div>
-        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-        <p dangerouslySetInnerHTML={{ __html: cleanHtml }} />
-      </div>
+        </>
+      ) : (
+        <p>Erreur de récupération des données</p>
+      )}
     </section>
   );
 }
