@@ -13,10 +13,6 @@ function HeaderMenu() {
     (state: RootState) => state.appStore.login.user.firstName,
   );
   // Store state #2
-  const userId = useSelector(
-    (state: RootState) => state.appStore.login.user.id,
-  );
-  // Store state #3
   const cartCount = useSelector(
     (state: RootState) => state.cartStore.cart,
   ).length;
