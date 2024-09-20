@@ -1,7 +1,8 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import actionAsyncFetchCart from "../middlewares/thunkFetchCarts";
 
 import type { IProduct } from "@/@Types";
+import actionAsyncFetchCart from "../middlewares/thunkFetchCarts";
+import actionAsyncPostToCart from "../middlewares/thunkPostToCart";
 
 interface CartStateApp {
   cart: IProduct[];
@@ -22,14 +23,10 @@ const cartReducer = createReducer(initialState, (builder) => {
     .addCase(actionAsyncFetchCart.fulfilled, (state, action) => {
       state.cart = action.payload;
     })
-    .addCase(addToCartAction, (_, action) => {
-      //!
-      //todo: post data
-      console.log(
-        "#DEV / cartReducer : Produit à envoyer en BDD [POST /carts/userId]",
-        action.payload,
-      );
-    });
+    .addCase(actionAsyncPostToCart.fulfilled, () => {});
 });
 
 export default cartReducer;
+
+// todo create function @/utils/addToCart.ts, @/utils/removeFromCart.ts
+// todo setup cartPage style with total, delete button, qty input & buttons +/-, delivery delay, payment button

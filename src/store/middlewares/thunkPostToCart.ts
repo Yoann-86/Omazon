@@ -1,16 +1,38 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import type ICart from "@/@Types/cart";
+import axios, { AxiosError } from "axios";
+import type { IProduct } from "@/@Types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const actionAsyncPostToCart = createAsyncThunk(
-  "cart/POST_CART",
-  async (product) => {
-    const result = await axios.post(`${API_URL}carts`, { product });
-
-    return result.data as ICart[];
-  },
-);
+const actionAsyncPostToCart = createAsyncThunk<
+  IProduct[],
+  { userId: number; productId: number },
+  { rejectValue: string }
+>("cart/POST_CART", async ({ productId, userId }, { rejectWithValue }) => {
+  try {
+    const result = await axios.post(
+      `${API_URL}carts`,
+      {
+        productId,
+        userId,
+      },
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      },
+    );
+    console.log(result.status, result.data);
+    return result.data as IProduct[];
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (error.response?.data) {
+        return rejectWithValue(error.response.data.message);
+      }
+      return rejectWithValue(error.message);
+    }
+    return rejectWithValue("# : An unexpected error occurred.");
+  }
+});
 
 export default actionAsyncPostToCart;
