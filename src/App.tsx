@@ -18,15 +18,13 @@ import actionAsyncFetchCart from "./store/middlewares/thunkFetchCarts";
 import actionAsyncFetchTags from "./store/middlewares/thunkFetchTags";
 import actionAsyncFetchProducts from "./store/middlewares/thunkFetchProducts";
 // Layout
-import Footer from "./Components/Layout/Footer/Footer";
-import Header from "./Components/Layout/Header/Header";
+import Layout from "./Components/Layout";
 // Pages
 import HomePage from "./Components/Pages/HomePage/HomePage";
 import ProductPage from "./Components/Pages/ProductPage/ProductPage";
 import CategoryPage from "./Components/Pages/CategoryPage/CategoryPage";
 import CartPage from "./Components/Pages/Cart/CartPage";
 import Error404 from "./Components/Pages/NotFound/NotFound";
-import Layout from "./Components/Layout";
 
 //todo :
 // - Fermer la fenetre de connexion au clic en dehors de celle-ci
