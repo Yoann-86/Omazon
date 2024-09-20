@@ -1,0 +1,54 @@
+@import '../../../../assets/styles/variables.scss';
+
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-block: 48px;
+
+    h3 {
+      font: $heading-m;
+      color: $main-lowest;
+    }
+
+    p {
+      text-align: center;
+      font: $text-m-regular;
+      color: $main-low;
+    }
+
+    button {
+      background-color: $button-primary-default-background;
+      border: 1px solid $button-primary-default-border;
+      border-radius: 8px;
+      padding-inline: 16px;
+      height: 36px;
+      font: $text-s-regular;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $button-primary-hover-background;
+        border: 1px solid $button-primary-hover-border;
+      }
+    }
+  }
+
+  &--footer-logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-block: 24px;
+    border-top: 1px solid $main-medium;
+
+    img {
+      height: 24px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import type { IUser } from "../../@Types";
+import type { IUser } from "@/@Types";
 import actionAsyncUserLogin from "../middlewares/thunkUserLogin";
 
 interface GeneralStateApp {

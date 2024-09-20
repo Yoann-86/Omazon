@@ -1,24 +1,36 @@
-import { Route, Routes } from "react-router-dom";
+/**
+ * Externals imports
+ */
 import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
+/**
+ * Style import
+ */
 import "./App.scss";
-import Header from "./Components/Header/Header";
-import HomePage from "./Components/HomePage/HomePage";
-import ProductPage from "./Components/ProductPage/ProductPage";
-import Error404 from "./Components/Error404/Error404";
-import CategoryPage from "./Components/CategoryPage/CategoryPage";
-import CartPage from "./Components/CartPage/CartPage";
-import actionAsyncFetchProducts from "./store/middlewares/thunkFetchProducts";
+/**
+ * Internal imports
+ */
+// Store
 import type { AppDispatch, RootState } from "./store/store";
 import actionAsyncFetchCategories from "./store/middlewares/thunkFetchCategories";
 import actionAsyncFetchCart from "./store/middlewares/thunkFetchCarts";
 import actionAsyncFetchTags from "./store/middlewares/thunkFetchTags";
-import Footer from "./Components/Footer/Footer";
+import actionAsyncFetchProducts from "./store/middlewares/thunkFetchProducts";
+// Layout
+import Footer from "./Components/Layout/Footer/Footer";
+import Header from "./Components/Layout/Header/Header";
+// Pages
+import HomePage from "./Components/Pages/HomePage/HomePage";
+import ProductPage from "./Components/Pages/ProductPage/ProductPage";
+import CategoryPage from "./Components/Pages/CategoryPage/CategoryPage";
+import CartPage from "./Components/Pages/Cart/CartPage";
+import Error404 from "./Components/Pages/NotFound/NotFound";
 
 //todo :
-// Fermer la fenetre de connexion au clic en dehors de celle-ci
-// Fakestoreapi.com
+// - Fermer la fenetre de connexion au clic en dehors de celle-ci
+// - Fakestoreapi.com
+// -
 
 function App() {
   // Hooks

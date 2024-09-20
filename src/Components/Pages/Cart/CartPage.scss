@@ -1,0 +1,17 @@
+@import '../../../assets/styles/variables.scss';
+
+.cart-page{
+  padding-inline: 24px;
+  padding-block: 48px;
+  padding-block-start: calc(48px + 72px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  
+  h2{
+    font: $heading-m;
+  }
+
+ 
+
+}

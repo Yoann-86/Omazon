@@ -1,0 +1,38 @@
+@import '../../../assets/styles/variables.scss';
+
+
+.category {
+ display: flex;
+ flex-direction: column;
+ gap: 28px;
+ align-items: center;
+
+ &--img {
+  height: 212px;
+  width: 212px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-filter {
+    height: 212px;
+    width: 212px;
+    position: absolute;
+    border-radius: 100%;
+    background-color: $transparency-mask;
+    z-index: 99;
+  }
+
+  &-image {
+    position: relative;
+    height: 120px;
+  }
+ }
+
+ &--title {
+  font: $heading-s;
+  color: $main-highest;
+ }
+}
+

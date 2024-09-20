@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/variables.scss';
+
+.footer-legals {
+  background-color: $main-higher;
+  padding-block: 24px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &--list {
+    display: flex;
+    gap: 24px;
+    padding-inline: 8px;
+
+    a{
+      text-decoration: none;
+      color: $main-low;
+      font: $text-s-regular;
+    }
+  }
+
+  &--copyright {
+    font: $text-xs-regular;
+    color: $main-low;
+  }
+}
