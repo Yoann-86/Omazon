@@ -36,14 +36,14 @@ function App() {
   const dispatch: AppDispatch = useDispatch();
 
   // Store states
-  const userId = useSelector(
-    (state: RootState) => state.appStore.login.user.id,
-  );
   const cartProductsCount = useSelector(
-    (state: RootState) =>
-      state.cartStore.cart.filter((cart) => cart.userId === userId).length,
-  );
+    (state: RootState) => state.cartStore.cart,
+  ).length;
+
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
+  const token = useSelector(
+    (state: RootState) => state.appStore.login.user.accessToken,
+  );
 
   // Effects [fetch datas]
   useEffect(() => {
@@ -53,8 +53,8 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isLogged) dispatch(actionAsyncFetchCart());
-  }, [dispatch, isLogged]);
+    if (isLogged && token) dispatch(actionAsyncFetchCart({ token }));
+  }, [dispatch, isLogged, token]);
 
   // Effetct [Set Page title]
   useEffect(() => {

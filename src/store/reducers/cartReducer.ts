@@ -1,9 +1,10 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import actionAsyncFetchCart from "../middlewares/thunkFetchCarts";
-import type ICart from "@/@Types/cart";
+
+import type { IProduct } from "@/@Types";
 
 interface CartStateApp {
-  cart: ICart[];
+  cart: IProduct[];
 }
 const initialState: CartStateApp = {
   cart: [],

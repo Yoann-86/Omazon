@@ -10,31 +10,15 @@ import type { IProduct } from "@/@Types";
 function CartPage() {
   // Store state
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
-  const carts = useSelector((state: RootState) => state.cartStore.cart);
-  const userId = useSelector(
-    (state: RootState) => state.appStore.login.user.id,
-  );
-
-  const products = useSelector(
-    (state: RootState) => state.productStore.products,
-  );
+  const cartList = useSelector((state: RootState) => state.cartStore.cart);
 
   // Component states
   const [productList, setProductList] = useState<IProduct[]>([]);
 
   // Effects
   useEffect(() => {
-    const productCart = carts
-      .filter((cart) => cart.userId === userId)
-      .map((cart) => cart.productId);
-
-    const cartProductList = products?.filter((product) =>
-      productCart.includes(product.id),
-    );
-
-    if (cartProductList && cartProductList?.length > 0)
-      setProductList(cartProductList);
-  }, [products, carts, userId]);
+    if (cartList && cartList?.length > 0) setProductList(cartList);
+  }, [cartList]);
 
   return (
     <section className="cart-page">

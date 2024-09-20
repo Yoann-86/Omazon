@@ -18,9 +18,8 @@ function HeaderMenu() {
   );
   // Store state #3
   const cartCount = useSelector(
-    (state: RootState) =>
-      state.cartStore.cart.filter((cart) => cart.userId === userId).length,
-  );
+    (state: RootState) => state.cartStore.cart,
+  ).length;
   // Store state #4
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
 
