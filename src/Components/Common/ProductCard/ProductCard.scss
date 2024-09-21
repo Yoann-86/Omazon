@@ -84,3 +84,21 @@
 
   }
 }
+
+@media screen and (max-width: 820px) {
+  .product-card{
+    &--img{
+      height: 296px;
+      width: 296px;
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .product-card{
+    &--img{
+      height: 264px;
+      width: 264px;
+    }
+  }
+}
