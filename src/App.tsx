@@ -24,12 +24,12 @@ import HomePage from "./Components/Pages/HomePage/HomePage";
 import ProductPage from "./Components/Pages/ProductPage/ProductPage";
 import CategoryPage from "./Components/Pages/CategoryPage/CategoryPage";
 import CartPage from "./Components/Pages/Cart/CartPage";
-import Error404 from "./Components/Pages/NotFound/NotFound";
+import Signin from "./Components/Pages/Mobile/Signin/Signin";
+import NotFound from "./Components/Pages/NotFound/NotFound";
 
 //todo :
 // - Fermer la fenetre de connexion au clic en dehors de celle-ci
-// - Fakestoreapi.com
-// -
+// - Ajouter modal de connexion en version mobile
 
 function App() {
   // Hooks
@@ -95,10 +95,18 @@ function App() {
           }
         />
         <Route
+          path="/signin"
+          element={
+            <Layout>
+              <Signin />
+            </Layout>
+          }
+        />
+        <Route
           path="*"
           element={
             <Layout>
-              <Error404 />
+              <NotFound />
             </Layout>
           }
         />

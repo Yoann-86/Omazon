@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import "./HeaderMenu.scss";
 
-import LoginForm from "./LoginForm/LoginForm";
+import LoginForm from "../../../Common/LoginModal/LoginModal";
 import type { RootState } from "@/store/store";
 
 function HeaderMenu() {
@@ -24,9 +24,7 @@ function HeaderMenu() {
 
   // handleFunction #1
   const handleOpenModal = () => {
-    openConnexionModal
-      ? setOpenConnexionModal(false)
-      : setOpenConnexionModal(true);
+    setOpenConnexionModal(!openConnexionModal);
   };
 
   // Local variable #1
@@ -34,48 +32,57 @@ function HeaderMenu() {
 
   //* JSX
   return (
-    <div className="right-menu">
-      <div className="mobile-account">
-        <button type="button">
-          <img src="/Omazon/icons/user.svg" alt="" />
-        </button>
-      </div>
-      <div className="account">
-        <p className="account-text">Bonjour, {userName}</p>
-        <div className="account--frame1">
-          <button
-            className="account--frame1-button button-reset"
-            type="button"
-            onClick={handleOpenModal}
-          >
-            <p className="account--frame1-text">Compte et listes</p>
+    <>
+      <div className="right-menu">
+        <div className="mobile-account">
+          <Link to="/signin" type="button">
+            <img src="/Omazon/icons/user.svg" alt="" />
+          </Link>
+        </div>
+        <div className="account" id="account">
+          <p className="account-text">Bonjour, {userName}</p>
+          <div className="account--frame1">
+            <button
+              className="account--frame1-button button-reset"
+              type="button"
+              onClick={handleOpenModal}
+            >
+              <p className="account--frame1-text">Compte et listes</p>
+              <img
+                className="account--frame1-img"
+                src="/Omazon/icons/caret-down.svg"
+                alt=""
+              />
+            </button>
+          </div>
+          <LoginForm
+            domNode={domNode}
+            openModal={openConnexionModal}
+            toggleModal={setOpenConnexionModal}
+          />
+        </div>
+
+        <Link to="/cart" className="cart">
+          <div className="cart-icon">
             <img
-              className="account--frame1-img"
-              src="/Omazon/icons/caret-down.svg"
+              className="cart-icon--img"
+              src="/Omazon/icons/cart.svg"
               alt=""
             />
-          </button>
-        </div>
-        <LoginForm
-          domNode={domNode}
-          openModal={openConnexionModal}
-          toggleModal={setOpenConnexionModal}
-        />
+            <p
+              className={
+                cartCount > 9
+                  ? "cart-icon--count count-more"
+                  : "cart-icon--count"
+              }
+            >
+              {isLogged ? cartCount : 0}
+            </p>
+          </div>
+          <p className="cart-text desktop-ui">Panier</p>
+        </Link>
       </div>
-      <Link to="/cart" className="cart">
-        <div className="cart-icon">
-          <img className="cart-icon--img" src="/Omazon/icons/cart.svg" alt="" />
-          <p
-            className={
-              cartCount > 9 ? "cart-icon--count count-more" : "cart-icon--count"
-            }
-          >
-            {isLogged ? cartCount : 0}
-          </p>
-        </div>
-        <p className="cart-text desktop-ui">Panier</p>
-      </Link>
-    </div>
+    </>
   );
 }
 

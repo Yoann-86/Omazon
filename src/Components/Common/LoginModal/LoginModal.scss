@@ -1,4 +1,4 @@
-@import '../../../../../assets/styles/variables.scss';
+@import '../../../assets/styles/variables.scss';
 
 .arrow-div{
   height: 12px;
@@ -14,8 +14,8 @@
 .account-modal{
   width: 500px;
   position: relative;
-  left: -275px;
   top: 10px;
+  left: -275px;
   border-radius: 3px;
   border: 1px solid $main-lower;
   background-color: $main-lowest;

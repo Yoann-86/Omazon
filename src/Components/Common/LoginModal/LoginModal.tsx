@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import "./LoginForm.scss";
+import "./LoginModal.scss";
 
 import type { AppDispatch, RootState } from "@/store/store";
 import actionAsyncUserLogin from "@/store/middlewares/thunkUserLogin";
@@ -18,6 +18,7 @@ interface LoginFormProps {
 //todo : error messages to refactor
 
 function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
+  // Store states:
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
   const userFirstName = useSelector(
     (state: RootState) => state.appStore.login.user.firstName,
@@ -28,8 +29,10 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
   const message = useSelector((state: RootState) => state.appStore.login.error);
   const dispatch: AppDispatch = useDispatch();
 
+  // References:
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Handle functions:
   const handleSubmitLoginForm = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -50,10 +53,12 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
     toggleModal(false);
   };
 
+  // Effects:
   useEffect(() => {
     openModal && inputRef.current?.focus();
   }, [openModal]);
 
+  //* JSX
   return (
     <>
       {!domNode

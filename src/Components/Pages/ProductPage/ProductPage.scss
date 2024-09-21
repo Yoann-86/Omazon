@@ -52,3 +52,14 @@
   }
 
 }
+
+@media screen and (max-width: 820px) {
+  .product-page{
+    flex-direction: column;
+
+    &--figure{
+      margin-top: 14px;
+      margin-inline: auto;
+    }
+  }
+}

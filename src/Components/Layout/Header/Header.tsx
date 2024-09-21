@@ -19,7 +19,10 @@ function Header() {
   }, []);
 
   return (
-    <section className={!scroll ? "header" : "header header--scroll"}>
+    <section
+      className={!scroll ? "header" : "header header--scroll"}
+      id="header"
+    >
       <div className="desktop-ui">
         <HeaderLogo />
         <HeaderForm />
