@@ -11,7 +11,7 @@ function Categories() {
     (state: RootState) => state.categoryStore.categories,
   );
   return (
-    <div className="categories">
+    <div className="categories desktop-ui">
       <h2 className="categories--header">Catégories à l'honneur</h2>
       <div className="categories--list">
         {categories?.map((category) => (

@@ -23,7 +23,7 @@ function Novelties() {
 
   //* JSX
   return (
-    <div className="novelties">
+    <div className="novelties desktop-ui">
       <h2 className="novelties-title">Nouveautés</h2>
       <div className="novelties-list">
         {newProducts.map((product) => (

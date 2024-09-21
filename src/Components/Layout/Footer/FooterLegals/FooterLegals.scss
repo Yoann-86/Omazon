@@ -3,15 +3,17 @@
 .footer-legals {
   background-color: $main-higher;
   padding-block: 24px;
-  height: 96px;
+  min-height: 96px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   &--list {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    column-gap: 24px;
     padding-inline: 8px;
+    justify-content: center;
 
     a{
       text-decoration: none;
@@ -25,3 +27,4 @@
     color: $main-low;
   }
 }
+
