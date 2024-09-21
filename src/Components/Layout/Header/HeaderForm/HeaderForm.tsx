@@ -76,7 +76,7 @@ function HeaderForm() {
   return (
     <form className="form">
       <select
-        className="form-select"
+        className="form-select mobile-ui--form"
         name="category-filter"
         id="category-filter"
         onChange={handleChangeSelectedCategory}

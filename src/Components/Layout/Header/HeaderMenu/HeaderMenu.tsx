@@ -35,7 +35,12 @@ function HeaderMenu() {
   //* JSX
   return (
     <div className="right-menu">
-      <div className="account" id="account">
+      <div className="mobile-account">
+        <button type="button">
+          <img src="/Omazon/icons/user.svg" alt="" />
+        </button>
+      </div>
+      <div className="account">
         <p className="account-text">Bonjour, {userName}</p>
         <div className="account--frame1">
           <button
@@ -68,7 +73,7 @@ function HeaderMenu() {
             {isLogged ? cartCount : 0}
           </p>
         </div>
-        <p className="cart-text">Panier</p>
+        <p className="cart-text desktop-ui">Panier</p>
       </Link>
     </div>
   );

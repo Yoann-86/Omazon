@@ -78,6 +78,15 @@
   }
 }
 
+@media screen and (max-width: 430px) {
+  .mobile-ui--form{
+    display: none;
+  }
 
+  .form-input{
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}
 
 

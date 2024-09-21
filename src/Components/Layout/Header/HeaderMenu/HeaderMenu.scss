@@ -9,6 +9,10 @@
  color: $main-lowest;
 }
 
+.mobile-account {
+  display: none;
+}
+
 .account {
   height: 36px;
   width: 112px;
@@ -79,3 +83,38 @@
   }
 }
 
+
+@media screen and (max-width: 820px) {
+  .account{
+    display: none;
+  }
+
+  .mobile-account {
+    display: block;
+
+    button{
+      border: none;
+      background-color: $main-higher;
+    }
+  }
+
+  .right-menu{
+    width: fit-content;
+  }
+
+  .cart{
+    width: fit-content;
+
+    &-icon{
+      &--img{
+      position: static;
+
+    }
+
+    &--count {
+      left: 18px;
+      top: -38px;
+    }
+  }
+  }
+}

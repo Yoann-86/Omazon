@@ -2,17 +2,62 @@
 
 .header{
   background-color: $main-higher;
-  display: flex;
-  gap: 36px;
   padding-inline: 24px;
   height: 72px;
   width: 100%;
-  align-items: center;
   position: fixed;
   z-index: 100;
   
+  .mobile-ui{
+    display: none;
+    width: inherit;
+    height: inherit;
+  }
+
+  .desktop-ui{
+    display: flex;
+    gap: 36px;
+    width: inherit;
+    height: inherit;
+    align-items: center;
+  }
   
   &--scroll{
     box-shadow: 0px 6px 20px 0px $main-medium;
+  }
+}
+
+@media screen and (max-width: 820px) {
+
+  .header{
+    padding-inline: 16px;
+    
+    justify-content: space-between;
+    height: 120px;
+
+    .desktop-ui{
+      display: none;
+    }
+
+    .mobile-ui{
+      width: inherit;
+      height: inherit;
+      display: flex;
+      flex-direction: column;
+
+      .header-top{
+        height: 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-block-start: 14px;
+      }
+
+      .header-bottom{
+        display: flex;
+        margin-block: auto;
+        height: 72px;
+      }
+    }
   }
 }

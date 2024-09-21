@@ -20,9 +20,20 @@ function Header() {
 
   return (
     <section className={!scroll ? "header" : "header header--scroll"}>
-      <HeaderLogo />
-      <HeaderForm />
-      <HeaderMenu />
+      <div className="desktop-ui">
+        <HeaderLogo />
+        <HeaderForm />
+        <HeaderMenu />
+      </div>
+      <div className="mobile-ui">
+        <div className="header-top">
+          <HeaderLogo />
+          <HeaderMenu />
+        </div>
+        <div className="header-bottom">
+          <HeaderForm />
+        </div>
+      </div>
     </section>
   );
 }
