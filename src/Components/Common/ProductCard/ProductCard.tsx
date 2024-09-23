@@ -17,14 +17,22 @@ function Product({ product, tag }: ProductProps) {
   const priceDecimal = product.price.toString().split(".")[1];
 
   return (
-    <div className="product-card">
-      <Link to={`/product/${product.id}`}>
-        <div className="product-card-img">
-          <div className="product-card-img--filter" />
-          <img src={product.image} alt="" className="product-card-img--image" />
-        </div>
+    <>
+      <div className="product-card">
+        <Link to={`/product/${product.id}`}>
+          <div className="product-card-img">
+            <div className="product-card-img--filter" />
+            <img
+              src={product.image}
+              alt=""
+              className="product-card-img--image"
+            />
+          </div>
+        </Link>
         <div className="product-card--title">
-          <p>{product.title}</p>
+          <Link to={`/product/${product.id}`}>
+            <p>{product.title}</p>
+          </Link>
         </div>
         <div className="price-component">
           <p>
@@ -39,21 +47,21 @@ function Product({ product, tag }: ProductProps) {
             )}
           </p>
         </div>
-      </Link>
-      <div className="product-card--button">
-        <AddToCartBtn product={product} />
-      </div>
+        <div className="product-card--button">
+          <AddToCartBtn product={product} />
+        </div>
 
-      <div className={tag ? "product-card--tag" : "hidden"}>
-        {product.tagId === 1 ? (
-          <p className={`tag-component ${tag?.type}`}>
-            Choix <span>d'Omazon</span>
-          </p>
-        ) : (
-          <p className={`tag-component ${tag?.type}`}>{tag?.text}</p>
-        )}
+        <div className={tag ? "product-card--tag" : "hidden"}>
+          {product.tagId === 1 ? (
+            <p className={`tag-component ${tag?.type}`}>
+              Choix <span>d'Omazon</span>
+            </p>
+          ) : (
+            <p className={`tag-component ${tag?.type}`}>{tag?.text}</p>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

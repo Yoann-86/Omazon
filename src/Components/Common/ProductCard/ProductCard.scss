@@ -38,7 +38,14 @@
     p{
       font: $text-m-regular;
       color: $main-highest;
+      
+      &:hover{
+        text-decoration: underline;
+        color: $info-higher;
+      }
     }
+    
+
   }
 
   &--button{
