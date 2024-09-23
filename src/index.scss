@@ -56,3 +56,21 @@
     }
   
 }
+
+.button-confirm-cart{
+
+  height: 36px;
+  padding-inline: 16px;
+  border-radius: 36px;
+  font: $text-s-regular;
+  color: $main-higher;
+  background-color: $button-primary-default-background;
+  border: 1px solid $button-primary-default-border;
+  cursor: pointer;
+
+  &:hover{
+    background-color: $button-primary-hover-background;
+    border: 1px solid $button-primary-hover-border;
+  }
+
+}

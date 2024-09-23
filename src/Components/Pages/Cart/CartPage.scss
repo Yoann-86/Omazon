@@ -12,6 +12,21 @@
     font: $heading-m;
   }
 
- 
+  .total-cart{
+    align-self: flex-end;
+    border: 1px solid $main-low;
+    height: fit-content;
+    width: fit-content;
+    padding: 16px;
+    
+    p{
+      text-align: end;
+    }
+
+    .total-price {
+      font: $heading-s;
+    }
+
+  }
 
 }

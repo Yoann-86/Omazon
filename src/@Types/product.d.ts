@@ -11,6 +11,10 @@ export default interface IProduct {
   tagId: number;
 }
 
+export interface IProductCart extends IProduct {
+  quantity: number;
+}
+
 // {
 //   id: 1,
 //   title:

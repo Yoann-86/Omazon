@@ -30,6 +30,7 @@ import NotFound from "./Components/Pages/NotFound/NotFound";
 //todo :
 // - Fermer la fenetre de connexion au clic en dehors de celle-ci
 // - Ajouter modal de connexion en version mobile
+// - Mettre en place un loader
 
 function App() {
   // Hooks
