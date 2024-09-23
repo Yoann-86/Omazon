@@ -8,7 +8,7 @@ import AddToCartBtn from "../Buttons/AddToCartBtn/AddToCartBtn";
 
 interface ProductProps {
   product: IProduct;
-  tag: ITag;
+  tag: ITag | null;
 }
 
 function Product({ product, tag }: ProductProps) {
