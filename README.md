@@ -2,6 +2,10 @@
 
 Visit Omazon app [HERE](https://yoann-86.github.io/Omazon/#/) !
 
+You can use this connexion id :
+  - dave.lopper@mail.fr
+  - ilovereact
+
 🕒 Since the API is hosted on Render, please allow approximately 3 minutes after the first call for data to be fetched. This delay is due to the time it takes for the Render service to initialize and respond.
 
 ## License
