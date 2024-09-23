@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./CartItem.scss";
 
 import type { AppDispatch, RootState } from "@/store/store";
@@ -61,8 +63,12 @@ function CartItem({ product }: CartItemProps) {
       <div className="separator" />
       <div className="flex-stretch">
         <div className="product-elm--details">
-          <img src={`${product.image}`} alt="" />
-          <p className="product-elm--title">{product.title}</p>
+          <Link to={`/product/${product.id}`}>
+            <img src={`${product.image}`} alt="" />
+          </Link>
+          <Link to={`/product/${product.id}`}>
+            <p className="product-elm--title">{product.title}</p>
+          </Link>
         </div>
         <div className="right-section">
           <div className="quantity-section">

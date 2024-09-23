@@ -25,6 +25,11 @@
 
   &--title{
     width: 100%;
+
+    &:hover{
+      text-decoration: underline;
+      color: $info-higher;
+    }
   }
 
 
