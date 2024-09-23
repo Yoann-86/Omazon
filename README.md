@@ -21,7 +21,7 @@ To build this clone, I used React with TypeScript and Sass for styling. The appl
 
 I created this project to practice and showcase my skills building front-end web applications using React and TypeScript. This project was developed in my free time, and I plan to continually enhance it with new features listed below.
 
-In the future, I will also develop a new backend API with NestJS with mariaDB database, which I intend to deploy on a Linux test server.
+In the future, I will also develop a new backend API with Express with postgre database using typeORM, which I intend to deploy on a Linux test server.
 
 All of these folders and updates will be gradually published on my GitHub account.
 
@@ -30,22 +30,13 @@ All of these folders and updates will be gradually published on my GitHub accoun
 
 ### Components 🧱
 - Create modal for add products `<ProductAddForm />`
-- Develop the shopping cart page `<CartPage />`
-- Set up JWT for authentication
 - Create a loader for the product page `<ProductPageLoader />`
-- Build the category page `<CategoryPage />`
 
 ### Features 🌟
-- Submit `formData` to backend for user authentication
-- Implement user registration and display username
-- Validate access rights to the `/cart`
+- Implement user registration
 
 ### Configuration ⚙️
-- Install & set redux store
-- Create unit tests 
 - Write Dockerfiles for the project
-- Make CI/CD script for github pages
-- Deploy the project on a Linux server 
 
 ## Getting started 
 
