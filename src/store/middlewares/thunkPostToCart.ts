@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 import type { IProduct } from "@/@Types";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_LOCAL_API_URL;
 
 const actionAsyncPostToCart = createAsyncThunk<
   IProduct[],
@@ -11,7 +11,7 @@ const actionAsyncPostToCart = createAsyncThunk<
 >("cart/POST_CART", async ({ productId, userId }, { rejectWithValue }) => {
   try {
     const result = await axios.post(
-      `${API_URL}carts`,
+      `${API_URL}cart`,
       {
         productId,
         userId,
@@ -22,7 +22,6 @@ const actionAsyncPostToCart = createAsyncThunk<
         },
       },
     );
-    console.log(result.status, result.data);
     return result.data as IProduct[];
   } catch (error) {
     if (error instanceof AxiosError) {

@@ -13,6 +13,7 @@ interface ProductProps {
 
 function Product({ product, tag }: ProductProps) {
   // Variables :
+  const API_URL = import.meta.env.VITE_LOCAL_API_URL;
   const pricePrimary = product.price.toString().split(".")[0];
   const priceDecimal = product.price.toString().split(".")[1];
 
@@ -23,7 +24,7 @@ function Product({ product, tag }: ProductProps) {
           <div className="product-card-img">
             <div className="product-card-img--filter" />
             <img
-              src={product.image}
+              src={`${API_URL}pictures/products/${product.image}`}
               alt=""
               className="product-card-img--image"
             />

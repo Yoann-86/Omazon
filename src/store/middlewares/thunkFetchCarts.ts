@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 
 import type { IProduct } from "@/@Types";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_LOCAL_API_URL;
 
 const actionAsyncFetchCart = createAsyncThunk<
   IProduct[],
@@ -16,8 +16,10 @@ const actionAsyncFetchCart = createAsyncThunk<
         authorization: `Bearer ${payload.token}`,
       },
     });
-
-    return result.data as IProduct[];
+    const response = result.data;
+    if (response.status === "success")
+      return response.data.cart.products as IProduct[];
+    return [] as IProduct[];
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.data) {

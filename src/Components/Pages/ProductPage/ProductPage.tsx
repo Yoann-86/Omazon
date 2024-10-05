@@ -9,6 +9,7 @@ import type { RootState } from "@/store/store";
 import AddToCartBtn from "@/Components/Common/Buttons/AddToCartBtn/AddToCartBtn";
 
 function ProductPage() {
+  const API_URL = import.meta.env.VITE_LOCAL_API_URL;
   const params = useParams();
 
   // Store states :
@@ -17,7 +18,6 @@ function ProductPage() {
       (product) => product.id === Number(params.id),
     ),
   );
-  console.log(product);
 
   // Local variables :
   const pricePrimary = product?.price.toString().split(".")[0];
@@ -42,7 +42,7 @@ function ProductPage() {
       {product ? (
         <>
           <figure className="product-page--figure">
-            <img src={`${product.image}`} alt="" />
+            <img src={`${API_URL}pictures/products/${product.image}`} alt="" />
             <div className="img-filter" />
           </figure>
           <div className="product-page--description">

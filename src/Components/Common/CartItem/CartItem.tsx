@@ -13,6 +13,8 @@ interface CartItemProps {
 }
 
 function CartItem({ product }: CartItemProps) {
+  const API_URL = import.meta.env.VITE_LOCAL_API_URL;
+
   // Hooks :
   const dispatch: AppDispatch = useDispatch();
 
@@ -64,7 +66,7 @@ function CartItem({ product }: CartItemProps) {
       <div className="flex-stretch">
         <div className="product-elm--details">
           <Link to={`/product/${product.id}`}>
-            <img src={`${product.image}`} alt="" />
+            <img src={`${API_URL}pictures/products/${product.image}`} alt="" />
           </Link>
           <Link to={`/product/${product.id}`}>
             <p className="product-elm--title">{product.title}</p>

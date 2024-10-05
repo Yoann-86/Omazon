@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { IUser } from "@/@Types";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_LOCAL_API_URL;
 
 const actionAsyncUserLogin = createAsyncThunk<
   IUser,
@@ -13,7 +13,8 @@ const actionAsyncUserLogin = createAsyncThunk<
     return rejectWithValue("Email and password are required");
   try {
     const result = await axios.post(`${API_URL}login`, loginData);
-    return result.data as IUser;
+    const response = result.data;
+    return response.data.user as IUser;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return rejectWithValue(
