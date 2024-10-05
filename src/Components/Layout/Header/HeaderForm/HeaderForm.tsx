@@ -85,7 +85,7 @@ function HeaderForm() {
           Toutes nos categories &#9662;
         </option>
         {categories.map((category) => (
-          <option key={category.id} value={category.title}>
+          <option key={category._id} value={category.title}>
             {category.title}
           </option>
         ))}
