@@ -7,6 +7,7 @@ import type { IProductCart } from "@/@Types/product";
 import { useDispatch, useSelector } from "react-redux";
 import actionAsyncPostToCart from "@/store/middlewares/thunkPostToCart";
 import actionAsyncFetchCart from "@/store/middlewares/thunkFetchCarts";
+import actionAsyncRemoveFromCart from "@/store/middlewares/thunkRemoveFromCart";
 
 interface CartItemProps {
   product: IProductCart;
@@ -31,14 +32,40 @@ function CartItem({ product }: CartItemProps) {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    alert("Fonctionnalité à venir");
+    try {
+      const resultAction = await dispatch(
+        actionAsyncRemoveFromCart({
+          productId: product.id,
+          userId: userId,
+          deleteAll: false,
+        }),
+      );
+      if (actionAsyncRemoveFromCart.fulfilled.match(resultAction)) {
+        dispatch(actionAsyncFetchCart({ token }));
+      }
+    } catch (error) {
+      alert("Erreur de supression du panier");
+    }
   };
 
   const handleRemoveAllItems = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    alert("Fonctionnalité à venir");
+    try {
+      const resultAction = await dispatch(
+        actionAsyncRemoveFromCart({
+          productId: product.id,
+          userId: userId,
+          deleteAll: true,
+        }),
+      );
+      if (actionAsyncRemoveFromCart.fulfilled.match(resultAction)) {
+        dispatch(actionAsyncFetchCart({ token }));
+      }
+    } catch (error) {
+      alert("Erreur de supression du panier");
+    }
   };
 
   const handleAddAnItem = async (

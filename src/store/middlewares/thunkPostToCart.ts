@@ -22,7 +22,8 @@ const actionAsyncPostToCart = createAsyncThunk<
         },
       },
     );
-    return result.data as IProduct[];
+
+    return result.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.data) {
