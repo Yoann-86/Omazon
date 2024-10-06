@@ -33,7 +33,7 @@ jobs:
         run: pnpm build
         env: 
           BASE_URL: /${{ github.event.repository.name }}
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_LOCAL_API_URL: ${{ secrets.VITE_LOCAL_API_URL }}
       # Generate an artifact
       - name: Generate Github Pages Artifact
         uses: actions/upload-pages-artifact@v3
