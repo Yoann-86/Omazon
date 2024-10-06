@@ -6,7 +6,6 @@ You can use this connexion id :
   - dave.lopper@mail.fr
   - ilovereact
 
-🕒 Since the API is hosted on Render, please allow approximately 3 minutes after the first call for data to be fetched. This delay is due to the time it takes for the Render service to initialize and respond.
 
 ## License
 
@@ -15,91 +14,25 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Frontend architecture: 
 
-To build this clone, I used React with TypeScript and Sass for styling. The application fetches data from an API and renders it in a Single Page Application (SPA) format. The design and layout are based on a Figma mockup that guided the integration process.
+To build this fake e-shop, I used React with TypeScript and Sass for styling. The application fetches data from an homemade API and renders it in a Single Page Application (SPA) format. The design and layout are based on a Figma mockup that guided the integration process.
+
+
+## Backend architecture:
+
+Github link to [API-Omazon](https://github.com/Yoann-86/API-Omazon)
+Visit the [documentation](https://yoann-86-server.eddi.cloud/api-docs/)
+
+The backend is a custom-built API designed to serve data to the frontend. It is developed using Node.js with TypeScript for strong typing and Express.js as the framework for routing and handling HTTP requests. MongoDB is used as the database to store and manage product information. The API exposes endpoints for CRUD operations and is integrated with authentication and security features to ensure safe data transactions. Docker is used for containerization, facilitating easy deployment and scalability.
+
+⚠️ My backend server is not running 24/7. It's a server made available by my school, I have to start it manually every day, then it is active for 8 hours.
 
 ## Objective:
 
-I created this project to practice and showcase my skills building front-end web applications using React and TypeScript. This project was developed in my free time, and I plan to continually enhance it with new features listed below.
+I created this project to practice and showcase my skills building fullstack web applications using TypeScript. This project was developed in my free time, and I plan to continually enhance it with new features.
 
-In the future, I will also develop a new backend API with Express with postgre database using typeORM, which I intend to deploy on a Linux test server.
+## What I learned
 
-All of these folders and updates will be gradually published on my GitHub account.
-
-
-## To-Do List: 
-
-### Components 🧱
-- Create modal for add products `<ProductAddForm />`
-- Create a loader for the product page `<ProductPageLoader />`
-
-### Features 🌟
-- Implement user registration
-
-### Configuration ⚙️
-- Write Dockerfiles for the project
-
-## Getting started 
-
-Follow these steps to set up the project locally:
-
-### Prerequisites 🔍
-
-Before running the project, make sure you have the following tools installed:
-- Node.js (v22 or higer)
-- npm or yarn as your package manager
-- Git 
-- A code editor like VSCode
-
-### Installation 🔧
-
-1. Clone the repository:
-```bash
-  git clone https://github.com/Yoann-86/Omazon-SPA.git
-```
-
-2. Navigate to the project directory:
-```bash
-  cd Omazon-SPA
-```
-
-3. Install dependencies:
-Using npm:
-```bash
-  npm install
-```
-
-Or using yarn:
-```bash
-  yarn install
-```
-
-### Running the project 🚀
-
-1. Start the development server:
-Using npm:
-```bash
-  npm run dev
-```
-
-Or using yarn:
-```bash
-  yarn dev
-```
-
-2. Open the application in your browser:
-```arduino
-  http://localhost:5173
-```
+I took my time on this project to explore some tools. I learned to use Redux to manage the states of my application and I find it to be a great tool. I also learned to use mongoDB with mongoose on this project, me who was used to relational databases. I was especially able to push my use of github workflows and docker a little further. There is still a lot to do on this project, I think I will come back to it a little later. I have to go and improve myself on other projects and other technologies.
 
 
-<!-- ### Running tests (optional)
-
-Using npm:
-```bash
-  npm run test
-```
-
-Or using yarn:
-```bash
-  yarn test
-``` -->
+> Thank you for taking the time to read and be interested in my work. Peace ✌️
