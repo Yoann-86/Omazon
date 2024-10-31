@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./AddToCartBtn.scss";
 
 import type { AppDispatch, RootState } from "@/store/store";
-import actionAsyncPostToCart from "@/store/middlewares/thunkPostToCart";
-import actionAsyncFetchCart from "@/store/middlewares/thunkFetchCarts";
+import actionAsyncPostToCart from "@/store/thunks/thunkPostToCart";
+import actionAsyncFetchCart from "@/store/thunks/thunkFetchCarts";
 import type { IProduct } from "@/@Types";
 
 interface AddtoCartBtnProps {

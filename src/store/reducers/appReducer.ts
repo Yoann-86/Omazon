@@ -1,6 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import type { IUser } from "@/@Types";
-import actionAsyncUserLogin from "../middlewares/thunkUserLogin";
+import actionAsyncUserLogin from "../thunks/thunkUserLogin";
 
 interface GeneralStateApp {
   isLogged: boolean;

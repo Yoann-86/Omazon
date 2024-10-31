@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./LoginModal.scss";
 
 import type { AppDispatch, RootState } from "@/store/store";
-import actionAsyncUserLogin from "@/store/middlewares/thunkUserLogin";
+import actionAsyncUserLogin from "@/store/thunks/thunkUserLogin";
 import { actionUserLogout } from "@/store/reducers/appReducer";
 
 interface LoginFormProps {

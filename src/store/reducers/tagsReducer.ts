@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import type { ITag } from "@/@Types";
-import actionAsyncFetchTags from "../middlewares/thunkFetchTags";
+import actionAsyncFetchTags from "../thunks/thunkFetchTags";
 
 interface TagsStateApp {
   tags: ITag[];

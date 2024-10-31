@@ -13,10 +13,10 @@ import "./App.scss";
  */
 // Store
 import type { AppDispatch, RootState } from "./store/store";
-import actionAsyncFetchCategories from "./store/middlewares/thunkFetchCategories";
-import actionAsyncFetchCart from "./store/middlewares/thunkFetchCarts";
-import actionAsyncFetchTags from "./store/middlewares/thunkFetchTags";
-import actionAsyncFetchProducts from "./store/middlewares/thunkFetchProducts";
+import actionAsyncFetchCategories from "./store/thunks/thunkFetchCategories";
+import actionAsyncFetchCart from "./store/thunks/thunkFetchCarts";
+import actionAsyncFetchTags from "./store/thunks/thunkFetchTags";
+import actionAsyncFetchProducts from "./store/thunks/thunkFetchProducts";
 // Layout
 import Layout from "./Components/Layout";
 // Pages

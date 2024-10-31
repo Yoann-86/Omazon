@@ -5,9 +5,9 @@ import "./CartItem.scss";
 import type { AppDispatch, RootState } from "@/store/store";
 import type { IProductCart } from "@/@Types/product";
 import { useDispatch, useSelector } from "react-redux";
-import actionAsyncPostToCart from "@/store/middlewares/thunkPostToCart";
-import actionAsyncFetchCart from "@/store/middlewares/thunkFetchCarts";
-import actionAsyncRemoveFromCart from "@/store/middlewares/thunkRemoveFromCart";
+import actionAsyncPostToCart from "@/store/thunks/thunkPostToCart";
+import actionAsyncFetchCart from "@/store/thunks/thunkFetchCarts";
+import actionAsyncRemoveFromCart from "@/store/thunks/thunkRemoveFromCart";
 
 interface CartItemProps {
   product: IProductCart;

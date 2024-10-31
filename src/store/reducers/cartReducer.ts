@@ -1,8 +1,8 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 import type { IProduct } from "@/@Types";
-import actionAsyncFetchCart from "../middlewares/thunkFetchCarts";
-import actionAsyncPostToCart from "../middlewares/thunkPostToCart";
+import actionAsyncFetchCart from "../thunks/thunkFetchCarts";
+import actionAsyncPostToCart from "../thunks/thunkPostToCart";
 
 interface CartStateApp {
   cart: IProduct[];

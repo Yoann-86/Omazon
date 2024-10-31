@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import type { ICategory } from "@/@Types";
-import actionAsyncFetchCategories from "../middlewares/thunkFetchCategories";
+import actionAsyncFetchCategories from "../thunks/thunkFetchCategories";
 
 interface CategoriesStateApp {
   categories: ICategory[];
