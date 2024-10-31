@@ -1,4 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
+
 import type { IUser } from "@/@Types";
 import actionAsyncUserLogin from "../thunks/thunkUserLogin";
 
@@ -47,8 +48,6 @@ const appReducer = createReducer(initialState, (builder) => {
       } else {
         state.login.error = "Unknow error";
       }
-      //!
-      console.log("#DEV - appReducer", action.error);
     })
     .addCase(actionUserLogout, (state) => {
       state.isLogged = initialState.isLogged;

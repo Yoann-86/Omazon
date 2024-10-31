@@ -41,8 +41,8 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
     const formData = new FormData(form);
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+
     dispatch(actionAsyncUserLogin({ email, password }));
-    toggleModal(false);
   };
 
   const handleLogout = (
@@ -57,6 +57,12 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
   useEffect(() => {
     openModal && inputRef.current?.focus();
   }, [openModal]);
+
+  useEffect(() => {
+    if (isLogged) {
+      toggleModal(false);
+    }
+  }, [isLogged, toggleModal]);
 
   //* JSX
   return (

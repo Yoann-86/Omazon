@@ -16,7 +16,7 @@ function HeaderMenu() {
   const cartCount = useSelector(
     (state: RootState) => state.cartStore.cart,
   ).length;
-  // Store state #4
+  // Store state #3
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
 
   // Component state #1
@@ -30,7 +30,6 @@ function HeaderMenu() {
   // Local variable #1
   const domNode = document.getElementById("account");
 
-  //* JSX
   return (
     <>
       <div className="right-menu">
