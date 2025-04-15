@@ -7,6 +7,9 @@ export default defineConfig({
   plugins: [react()],
   base: "/Omazon/",
   resolve: {
-    alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
+    alias: {
+      variables: path.resolve(__dirname, "src/assets/styles/variables.scss"),
+      "@": path.resolve(__dirname, "src"),
+    },
   },
 });

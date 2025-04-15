@@ -1,8 +1,8 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .footer {
   display: flex;
   flex-direction: column;
-  background-color: $main-high;
+  background-color: variables.$main-high;
   
 }

@@ -1,7 +1,7 @@
-@import '../../../../assets/styles/variables.scss';
+@use 'variables';
 
 .footer-legals {
-  background-color: $main-higher;
+  background-color: variables.$main-higher;
   padding-block: 24px;
   min-height: 96px;
   display: flex;
@@ -17,14 +17,14 @@
 
     a{
       text-decoration: none;
-      color: $main-low;
-      font: $text-s-regular;
+      color: variables.$main-low;
+      font: variables.$text-s-regular;
     }
   }
 
   &--copyright {
-    font: $text-xs-regular;
-    color: $main-low;
+    font: variables.$text-xs-regular;
+    color: variables.$main-low;
   }
 }
 

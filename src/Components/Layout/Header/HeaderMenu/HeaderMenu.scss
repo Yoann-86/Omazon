@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/variables.scss';
+@use 'variables';
 
 .right-menu {
  display: flex;
@@ -6,7 +6,7 @@
  height: 100%;
  width: 217px;
  align-items: center; 
- color: $main-lowest;
+ color: variables.$main-lowest;
 }
 
 .mobile-account {
@@ -22,7 +22,7 @@
 
   &-text {
     height: 12px;
-    font: $menu-s-regular;
+    font: variables.$menu-s-regular;
   }
 
 
@@ -36,8 +36,8 @@
     }
 
     &-text {
-      font: $menu-m-bold;
-      color: $main-lowest;
+      font: variables.$menu-m-bold;
+      color: variables.$main-lowest;
     }
 
     &-img {
@@ -64,8 +64,8 @@
     }
 
     &--count {
-      color: $brand-primary;
-      font: $text-m-bold;
+      color: variables.$brand-primary;
+      font: variables.$text-m-bold;
       position: relative;
       left: 13px;
       top: -12px;
@@ -78,7 +78,7 @@
 
   &-text {
     display: inline-block;
-    font: $menu-m-bold;
+    font: variables.$menu-m-bold;
     
   }
 }
@@ -94,7 +94,7 @@
 
     button{
       border: none;
-      background-color: $main-higher;
+      background-color: variables.$main-higher;
       
       &:hover{
         cursor: pointer;

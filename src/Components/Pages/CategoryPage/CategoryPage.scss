@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 
 .category-page {
@@ -10,7 +10,7 @@
   gap: 24px;
 
   h2{
-    font: $heading-m;
+    font: variables.$heading-m;
   }
 
   .product-list{

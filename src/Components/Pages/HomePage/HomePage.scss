@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .home {
   padding-inline: 24px;
@@ -9,8 +9,8 @@
   gap: 72px;
 
   h2{
-    color: $main-highest;
-    font: $heading-m;
+    color: variables.$main-highest;
+    font: variables.$heading-m;
   }
 }
 

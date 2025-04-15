@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/variables.scss';
+@use 'variables';
 
 .form {
   height: 100%;
@@ -7,9 +7,9 @@
   align-items: center;
   
   &-select {
-    color: $brand-grey;
-    background-color: $main-lower;
-    font: $text-s-regular;
+    color: variables.$brand-grey;
+    background-color: variables.$main-lower;
+    font: variables.$text-s-regular;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
     height: 36px;
@@ -18,10 +18,10 @@
     padding-inline-end: 6px;
     appearance: none;
     border: none;
-    border-right: 1px solid $main-low;
+    border-right: 1px solid variables.$main-low;
    
     &:focus{
-      outline-color: $button-primary-active-background;
+      outline-color: variables.$button-primary-active-background;
     } 
   }
   
@@ -34,9 +34,9 @@
     height: 100%;
     width: 100%;
     border: none;
-    background-color: $main-lowest;
-    color: $brand-grey;
-    font: $text-m-regular;
+    background-color: variables.$main-lowest;
+    color: variables.$brand-grey;
+    font: variables.$text-m-regular;
     font-size: 16px;
     font-weight: 400;
     text-indent: 8px;
@@ -44,7 +44,7 @@
     border-bottom-right-radius: 0;
 
     &:focus{
-      outline-color: $button-primary-active-background;
+      outline-color: variables.$button-primary-active-background;
     } 
   }
 
@@ -53,16 +53,16 @@
     width: 100%;
     padding: 8px;
     position: relative;
-    background-color: $main-lowest;
-    box-shadow: $dropdown-effect;
-    border: 1px solid $main-lower;
-    font: $text-m-regular;
+    background-color: variables.$main-lowest;
+    box-shadow: variables.$dropdown-effect;
+    border: 1px solid variables.$main-lower;
+    font: variables.$text-m-regular;
     overflow-y: scroll;
     scrollbar-width: none;
   }
   
   &-button{
-    background-color: $brand-primary;
+    background-color: variables.$brand-primary;
     border-radius: 4px;
     height: 36px;
     width: 45px;
@@ -76,7 +76,7 @@
     }
 
     &:focus{
-      outline-color: $button-primary-active-background;
+      outline-color: variables.$button-primary-active-background;
     } 
   }
 }

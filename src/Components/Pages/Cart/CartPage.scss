@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .cart-page{
   padding-inline: 24px;
@@ -9,12 +9,12 @@
   gap: 24px;
   
   h2{
-    font: $heading-m;
+    font: variables.$heading-m;
   }
 
   .total-cart{
     align-self: flex-end;
-    border: 1px solid $main-low;
+    border: 1px solid variables.$main-low;
     height: fit-content;
     width: fit-content;
     padding: 16px;
@@ -24,7 +24,7 @@
     }
 
     .total-price {
-      font: $heading-s;
+      font: variables.$heading-s;
     }
 
   }

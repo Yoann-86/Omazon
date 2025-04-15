@@ -1,4 +1,4 @@
-@import '../../../../assets/styles/variables.scss';
+@use 'variables';
 
 .footer-cta {
   display: flex;
@@ -15,31 +15,31 @@
     padding-block: 48px;
 
     h3 {
-      font: $heading-m;
-      color: $main-lowest;
+      font: variables.$heading-m;
+      color: variables.$main-lowest;
       text-align: center;
     }
 
     p {
       text-align: center;
-      font: $text-m-regular;
-      color: $main-low;
+      font: variables.$text-m-regular;
+      color: variables.$main-low;
     }
 
     button {
-      background-color: $button-primary-default-background;
-      border: 1px solid $button-primary-default-border;
+      background-color: variables.$button-primary-default-background;
+      border: 1px solid variables.$button-primary-default-border;
       border-radius: 8px;
       padding-inline: 16px;
       min-height: 36px;
       max-height: fit-content;
-      font: $text-s-regular;
+      font: variables.$text-s-regular;
       cursor: pointer;
       max-width: 75%;
 
       &:hover {
-        background-color: $button-primary-hover-background;
-        border: 1px solid $button-primary-hover-border;
+        background-color: variables.$button-primary-hover-background;
+        border: 1px solid variables.$button-primary-hover-border;
       }
     }
   }
@@ -49,7 +49,7 @@
     display: flex;
     justify-content: center;
     padding-block: 24px;
-    border-top: 1px solid $main-medium;
+    border-top: 1px solid variables.$main-medium;
 
     img {
       height: 24px;

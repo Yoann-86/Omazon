@@ -1,11 +1,11 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .product-card{
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 330px;
-  border: 1px solid $main-lower;
+  border: 1px solid variables.$main-lower;
   border-radius: 4px;
   padding-bottom: 8px;
 
@@ -20,7 +20,7 @@
       position: absolute;
       width: 330px;
       height: 330px;
-      background-color: $transparency-mask;
+      background-color: variables.$transparency-mask;
       z-index: 99;
     }
 
@@ -36,12 +36,12 @@
     overflow: hidden;
 
     p{
-      font: $text-m-regular;
-      color: $main-highest;
+      font: variables.$text-m-regular;
+      color: variables.$main-highest;
       
       &:hover{
         text-decoration: underline;
-        color: $info-higher;
+        color: variables.$info-higher;
       }
     }
     
@@ -65,28 +65,28 @@
       left: 1px;
       width: 127px;
       height: 24px;
-      font: $text-s-regular;
-      color: $main-lowest;
+      font: variables.$text-s-regular;
+      color: variables.$main-lowest;
       padding-inline-start: 8px;
       clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
     }
     .tag-component.new{
-      background-color: $brand-grey;
+      background-color: variables.$brand-grey;
     }
 
     .tag-component.best-seller{
-      background-color: $brand-primary;
+      background-color: variables.$brand-primary;
     }
 
     .tag-component.choice{
-      background-color: $main-high;
+      background-color: variables.$main-high;
       span{
-        color: $brand-primary;
+        color: variables.$brand-primary;
       }
     }
 
     .tag-component.flash{
-      background-color: $danger-medium;
+      background-color: variables.$danger-medium;
     }
 
   }

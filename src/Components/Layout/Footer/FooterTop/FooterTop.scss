@@ -1,15 +1,15 @@
-@import '../../../../assets/styles/variables.scss';
+@use 'variables';
 
 .footer-top {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $main-medium;
+  background-color: variables.$main-medium;
   height: 48px;
 
   &--btn {
-    font: $text-s-bold;
-    color: $main-lowest;
+    font: variables.$text-s-bold;
+    color: variables.$main-lowest;
   
     // &:hover {
       

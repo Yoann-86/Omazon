@@ -1,7 +1,7 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .header{
-  background-color: $main-higher;
+  background-color: variables.$main-higher;
   padding-inline: 24px;
   height: 72px;
   width: 100%;
@@ -23,7 +23,7 @@
   }
   
   &--scroll{
-    box-shadow: 0px 6px 20px 0px $main-medium;
+    box-shadow: 0px 6px 20px 0px variables.$main-medium;
   }
 }
 

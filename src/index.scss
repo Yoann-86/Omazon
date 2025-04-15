@@ -1,5 +1,5 @@
 @use './reset.scss';
-@import './assets/styles/variables.scss';
+@use 'variables';
 
 *{
   font-family: "amazon-ember-400";
@@ -23,15 +23,15 @@
     height: 36px;
     padding-inline: 16px;
     border-radius: 36px;
-    font: $text-s-regular;
-    color: $main-higher;
-    background-color: $button-primary-default-background;
-    border: 1px solid $button-primary-default-border;
+    font: variables.$text-s-regular;
+    color: variables.$main-higher;
+    background-color: variables.$button-primary-default-background;
+    border: 1px solid variables.$button-primary-default-border;
     cursor: pointer;
 
     &:hover{
-      background-color: $button-primary-hover-background;
-      border: 1px solid $button-primary-hover-border;
+      background-color: variables.$button-primary-hover-background;
+      border: 1px solid variables.$button-primary-hover-border;
     }
   
 }
@@ -43,15 +43,15 @@
     padding-inline: 8px;
 
     p{
-      font: $price-xl-regular;
-      color: $main-highest;
+      font: variables.$price-xl-regular;
+      color: variables.$main-highest;
 
       .separator{
-        font: $text-xs-regular;
+        font: variables.$text-xs-regular;
       }
 
       .decimal{
-        font: $text-s-regular;
+        font: variables.$text-s-regular;
       }
     }
   
@@ -62,15 +62,15 @@
   height: 36px;
   padding-inline: 16px;
   border-radius: 36px;
-  font: $text-s-regular;
-  color: $main-higher;
-  background-color: $button-primary-default-background;
-  border: 1px solid $button-primary-default-border;
+  font: variables.$text-s-regular;
+  color: variables.$main-higher;
+  background-color: variables.$button-primary-default-background;
+  border: 1px solid variables.$button-primary-default-border;
   cursor: pointer;
 
   &:hover{
-    background-color: $button-primary-hover-background;
-    border: 1px solid $button-primary-hover-border;
+    background-color: variables.$button-primary-hover-background;
+    border: 1px solid variables.$button-primary-hover-border;
   }
 
 }

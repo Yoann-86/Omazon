@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 
 .category {
@@ -20,7 +20,7 @@
     width: 212px;
     position: absolute;
     border-radius: 100%;
-    background-color: $transparency-mask;
+    background-color: variables.$transparency-mask;
     z-index: 99;
   }
 
@@ -31,8 +31,8 @@
  }
 
  &--title {
-  font: $heading-s;
-  color: $main-highest;
+  font: variables.$heading-s;
+  color: variables.$main-highest;
  }
 }
 

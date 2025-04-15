@@ -1,9 +1,9 @@
-@import '../../../assets/styles/variables.scss';
+@use 'variables';
 
 .arrow-div{
   height: 12px;
   width: 12px;
-  background-color: $main-lowest;
+  background-color: variables.$main-lowest;
   position: relative;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   z-index: 100;
@@ -17,8 +17,8 @@
   top: 10px;
   left: -275px;
   border-radius: 3px;
-  border: 1px solid $main-lower;
-  background-color: $main-lowest;
+  border: 1px solid variables.$main-lower;
+  background-color: variables.$main-lowest;
   padding-block: 24px;
   display: flex;
   flex-direction: column;
@@ -38,14 +38,14 @@
       gap: 12px;
 
       label{
-        font: $text-m-regular;
+        font: variables.$text-m-regular;
       }
 
       input{
-        color: $brand-grey;
-        font: $text-m-regular;
+        color: variables.$brand-grey;
+        font: variables.$text-m-regular;
         text-indent: 17px;
-        border: 1px solid $brand-grey;
+        border: 1px solid variables.$brand-grey;
         border-radius: 8px;
         height: 36px;
         width: 216px;
@@ -55,30 +55,30 @@
       height: 36px;
       width: 100%;
       // padding-inline: 64px;
-      font: $text-s-regular;
-      color: $main-higher;
+      font: variables.$text-s-regular;
+      color: variables.$main-higher;
       border-radius: 8px;
-      background-color: $button-primary-default-background;
-      border: 1px solid $button-primary-default-border;
+      background-color: variables.$button-primary-default-background;
+      border: 1px solid variables.$button-primary-default-border;
     }
 
   }
 
   &--new-client{
-    font: $text-xs-regular;
+    font: variables.$text-xs-regular;
 
     a{
-      color: $info-medium;
+      color: variables.$info-medium;
     }
     a:hover{
-      color: $brand-primary;
+      color: variables.$brand-primary;
       text-decoration: underline;
     }
   }
 
   .error-message{
-    font: $text-xs-regular;
-    color: $danger-medium;
+    font: variables.$text-xs-regular;
+    color: variables.$danger-medium;
   }
 }
 
@@ -125,20 +125,20 @@
         height: 48px;
         width: 48px;
         border-radius: 100%;
-        background-color: $info-medium;
-        // box-shadow: inset 1px 1px 5px 5px $info-medium;
+        background-color: variables.$info-medium;
+        // box-shadow: inset 1px 1px 5px 5px variables.$info-medium;
         }
 
       .profil-who{
 
 
         &--name{
-          font: $text-m-regular;
+          font: variables.$text-m-regular;
         }
 
         &--status{
-          font: $text-s-regular;
-          color: $info-low;
+          font: variables.$text-s-regular;
+          color: variables.$info-low;
         }
       }
     }
@@ -148,8 +148,8 @@
       gap: 8px;
       align-items: center;
       justify-content: flex-end;
-      color: $info-medium;
-      font: $text-s-regular;
+      color: variables.$info-medium;
+      font: variables.$text-s-regular;
 
       img{
         height: 6px;
@@ -159,8 +159,8 @@
     }
   }
   &--button{
-    font: $text-s-regular;
-    color: $main-high;
+    font: variables.$text-s-regular;
+    color: variables.$main-high;
   
     &:hover{
       text-decoration: underline;
