@@ -1,26 +1,11 @@
 # Omazon - clone of a famous website 🌟
 
-Visit Omazon app [HERE](https://yoann-86.github.io/Omazon/#/) !
-
-You can use this connexion id :
-  - dave.lopper@mail.fr
-  - ilovereact
-
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
-
 ## Frontend architecture: 
 
 To build this fake e-shop, I used React with TypeScript and Sass for styling. The application fetches data from an homemade API and renders it in a Single Page Application (SPA) format. The design and layout are based on a Figma mockup that guided the integration process.
 
 
 ## Backend architecture:
-
-Github link to [API-Omazon](https://github.com/Yoann-86/API-Omazon)
-Visit the [documentation](https://yoann-86-server.eddi.cloud/api-docs/)
 
 The backend is a custom-built API designed to serve data to the frontend. It is developed using Node.js with TypeScript for strong typing and Express.js as the framework for routing and handling HTTP requests. MongoDB is used as the database to store and manage product information. The API exposes endpoints for CRUD operations and is integrated with authentication and security features to ensure safe data transactions. Docker is used for containerization, facilitating easy deployment and scalability.
 

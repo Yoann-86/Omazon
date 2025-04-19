@@ -9,7 +9,7 @@ export default defineConfig({
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
     react(),
   ],
-  // base: "/Omazon/",
+  base: "/",
   resolve: {
     alias: {
       variables: path.resolve(__dirname, "src/assets/styles/variables.scss"),
