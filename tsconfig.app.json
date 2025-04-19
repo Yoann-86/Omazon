@@ -23,7 +23,12 @@
     /* Aliases */
     "types": ["node"],
     "paths": {
-      "@/*": ["./src/*"]
+      "modules/*": ["./src/modules/*"],
+      "components/*": ["./src/components/*"],
+      "infrastructure/*": ["./src/infrastructure/*"],
+      "store/*": ["./src/store/*"],
+      "types": ["./src/@Types"],
+      "utils/*": ["./src/utils/*"]
     }
   }
 }

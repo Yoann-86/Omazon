@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./LoginModal.scss";
 
-import type { AppDispatch, RootState } from "@/store/store";
-import actionAsyncUserLogin from "@/store/thunks/thunkUserLogin";
-import { actionUserLogout } from "@/store/reducers/appReducer";
+import type { AppDispatch, RootState } from "store/store";
+import actionAsyncUserLogin from "store/thunks/thunkUserLogin";
+import { actionUserLogout } from "store/reducers/appReducer";
 
 interface LoginFormProps {
   domNode: HTMLElement | null;
@@ -116,7 +116,7 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
                     <div className="is-logged--profile">
                       <div className="left">
                         <figure>
-                          <img src="/Omazon/icons/user.svg" alt="" />
+                          <img src="/icons/user.svg" alt="" />
                           <div className="img-background" />
                         </figure>
 
@@ -131,7 +131,7 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
                       </div>
                       <button type="button" className="button-reset right">
                         <p>Gérer les profils</p>
-                        <img src="/Omazon/icons/chevron-right.svg" alt="" />
+                        <img src="/icons/chevron-right.svg" alt="" />
                       </button>
                     </div>
                     <button

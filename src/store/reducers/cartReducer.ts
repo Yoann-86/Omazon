@@ -1,6 +1,6 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-import type { IProduct } from "@/@Types";
+import type { IProduct } from "types";
 import actionAsyncFetchCart from "../thunks/thunkFetchCarts";
 import actionAsyncPostToCart from "../thunks/thunkPostToCart";
 

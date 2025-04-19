@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./AddToCartBtn.scss";
 
-import type { AppDispatch, RootState } from "@/store/store";
-import actionAsyncPostToCart from "@/store/thunks/thunkPostToCart";
-import actionAsyncFetchCart from "@/store/thunks/thunkFetchCarts";
-import type { IProduct } from "@/@Types";
+import type { AppDispatch, RootState } from "store/store";
+import actionAsyncPostToCart from "store/thunks/thunkPostToCart";
+import actionAsyncFetchCart from "store/thunks/thunkFetchCarts";
+import type { IProduct } from "types";
 
 interface AddtoCartBtnProps {
   product: IProduct;

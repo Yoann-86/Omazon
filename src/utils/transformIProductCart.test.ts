@@ -1,7 +1,7 @@
 import { describe, test, expect } from "vitest";
 
 import type { IProduct } from "../@Types";
-import type { IProductCart } from "@/@Types/product";
+import type { IProductCart } from "types/product";
 import transformIProductCart from "./transformIProductCart";
 
 describe("transformIProductCart", () => {

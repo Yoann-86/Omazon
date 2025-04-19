@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
-import "./ProductCard.scss";
+import "components/common/ProductCard/ProductCard.scss";
 
-import type IProduct from "@/@Types/product";
-import type ITag from "@/@Types/tag";
-import AddToCartBtn from "../Buttons/AddToCartBtn/AddToCartBtn";
+import type { IProduct } from "types";
+import type { ITag } from "types";
+import AddToCartBtn from "components/common/Buttons/AddToCartBtn/AddToCartBtn";
 
 interface ProductProps {
   product: IProduct;
@@ -20,7 +20,7 @@ function Product({ product, tag }: ProductProps) {
   return (
     <>
       <div className="product-card">
-        <Link to={`/product/${product.id}`}>
+        <Link to="/product/$id" params={{ id: product.id.toString() }}>
           <div className="product-card-img">
             <div className="product-card-img--filter" />
             <img
@@ -31,7 +31,7 @@ function Product({ product, tag }: ProductProps) {
           </div>
         </Link>
         <div className="product-card--title">
-          <Link to={`/product/${product.id}`}>
+          <Link to="/product/$id" params={{ id: product.id.toString() }}>
             <p>{product.title}</p>
           </Link>
         </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
-import type { IProduct } from "@/@Types";
+import type { IProduct } from "types";
 
 const API_URL = import.meta.env.VITE_LOCAL_API_URL;
 

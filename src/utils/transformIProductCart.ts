@@ -1,5 +1,5 @@
-import type { IProduct } from "@/@Types";
-import type { IProductCart } from "@/@Types/product";
+import type { IProduct } from "types";
+import type { IProductCart } from "types/product";
 
 export default function transformIProductCart(
   cartList: IProduct[],

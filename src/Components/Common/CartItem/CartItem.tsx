@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 
 import "./CartItem.scss";
 
-import type { AppDispatch, RootState } from "@/store/store";
-import type { IProductCart } from "@/@Types/product";
+import type { AppDispatch, RootState } from "store/store";
+import type { IProductCart } from "types";
 import { useDispatch, useSelector } from "react-redux";
-import actionAsyncPostToCart from "@/store/thunks/thunkPostToCart";
-import actionAsyncFetchCart from "@/store/thunks/thunkFetchCarts";
-import actionAsyncRemoveFromCart from "@/store/thunks/thunkRemoveFromCart";
+import actionAsyncPostToCart from "store/thunks/thunkPostToCart";
+import actionAsyncFetchCart from "store/thunks/thunkFetchCarts";
+import actionAsyncRemoveFromCart from "store/thunks/thunkRemoveFromCart";
 
 interface CartItemProps {
   product: IProductCart;
@@ -92,10 +92,10 @@ function CartItem({ product }: CartItemProps) {
       <div className="separator" />
       <div className="flex-stretch">
         <div className="product-elm--details">
-          <Link to={`/product/${product.id}`}>
+          <Link to="/product/$id" params={{ id: product.id.toString() }}>
             <img src={`${API_URL}pictures/products/${product.image}`} alt="" />
           </Link>
-          <Link to={`/product/${product.id}`}>
+          <Link to="/product/$id" params={{ id: product.id.toString() }}>
             <p className="product-elm--title">{product.title}</p>
           </Link>
         </div>
