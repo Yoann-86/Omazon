@@ -13,10 +13,7 @@ import "./App.scss";
  */
 // Store
 import type { AppDispatch, RootState } from "./store/store";
-import actionAsyncFetchCategories from "./store/thunks/thunkFetchCategories";
 import actionAsyncFetchCart from "./store/thunks/thunkFetchCarts";
-import actionAsyncFetchTags from "./store/thunks/thunkFetchTags";
-import actionAsyncFetchProducts from "./store/thunks/thunkFetchProducts";
 // Layout
 import Layout from "./Components/Layout";
 // Pages
@@ -45,13 +42,6 @@ function App() {
   const token = useSelector(
     (state: RootState) => state.appStore.login.user.accessToken,
   );
-
-  // Effects [fetch datas]
-  useEffect(() => {
-    dispatch(actionAsyncFetchProducts());
-    dispatch(actionAsyncFetchCategories());
-    dispatch(actionAsyncFetchTags());
-  }, [dispatch]);
 
   useEffect(() => {
     if (isLogged && token) dispatch(actionAsyncFetchCart({ token }));

@@ -1,19 +1,31 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 
 import "./HeaderForm.scss";
+import type { ICategory, IProduct } from "@/@Types";
 
-import type { RootState } from "@/store/store";
+import { axiosInstance } from "@/infrastructure/api/axios";
 
 function HeaderForm() {
-  // Store states
-  const products = useSelector(
-    (state: RootState) => state.productStore.products,
-  );
-  const categories = useSelector(
-    (state: RootState) => state.categoryStore.categories,
-  );
+  //todo: search is case sensitive and not not optimal
+  //todo: create a real search hook
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("categories");
+      return result.data.data.categories as ICategory[];
+    },
+  });
+
+  const { data: products = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("products");
+      return result.data.data.products as IProduct[];
+    },
+  });
 
   // Component states
   const [filteredProductList, setFilteredProductList] = useState(products);
@@ -33,7 +45,7 @@ function HeaderForm() {
     event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const currentValue = event.currentTarget.value.toLowerCase();
-    const findedCategory = categories.find(
+    const findedCategory = categories?.find(
       (category) => category.title.toLowerCase() === currentValue,
     );
     if (findedCategory) return setFilteredProductCategoryId(findedCategory.id);
@@ -84,7 +96,7 @@ function HeaderForm() {
         <option className="form-select--default-option" value="">
           Toutes nos categories &#9662;
         </option>
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <option key={category._id} value={category.title}>
             {category.title}
           </option>

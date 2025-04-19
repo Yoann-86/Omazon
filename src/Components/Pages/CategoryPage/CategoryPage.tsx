@@ -1,71 +1,63 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 
 import "./CategoryPage.scss";
+import type { IProduct, ITag, ICategory } from "@/@Types";
 
 import Product from "@/Components/Common/ProductCard/ProductCard";
-import type { RootState } from "@/store/store";
-import type IProduct from "@/@Types/product";
-import type ICategory from "@/@Types/category";
+import { axiosInstance } from "@/infrastructure/api/axios";
 
 function CategoryPage() {
-  // Store states :
-  const categories = useSelector(
-    (state: RootState) => state.categoryStore.categories,
-  );
-  const products = useSelector(
-    (state: RootState) => state.productStore.products,
-  );
-  const tags = useSelector((state: RootState) => state.tagStore.tags);
-
-  // Component States :
-  const [currentCategory, setCurrentCategory] = useState<null | ICategory>(
-    null,
-  );
-  const [categoryProductList, setCategoryProducList] = useState<IProduct[]>([]);
-
-  // Variables :
   const params = useParams();
 
-  // Effects :
-  useEffect(() => {
-    const findCategory = () => {
-      if (categories.length > 0) {
-        const findedCategory = categories.find(
-          (category) => category.slug === params.slug,
-        );
+  const { data: category, isLoading: loading_category } = useQuery({
+    queryKey: ["categories", `${params.slug}`],
+    enabled: !!params.slug,
+    queryFn: async () => {
+      const result = await axiosInstance.get("categories");
+      const findedCategory = result.data.data.categories.find(
+        (category: ICategory) => category.slug === params.slug,
+      );
+      return findedCategory as ICategory;
+    },
+  });
 
-        // todo => Redirect if (!findedCategory)
-        if (!findedCategory) return;
+  const { data: products = [], isLoading: loading_products } = useQuery({
+    queryKey: ["products", "category", `${category?.id}`],
+    // We need to fetch products only if we have a category
+    enabled: !!category?.id,
+    queryFn: async () => {
+      const result = await axiosInstance.get(
+        `products?categoryId=${category?.id}`,
+      );
+      return result.data.data.products as IProduct[];
+    },
+  });
 
-        const filteredProducts = products?.filter(
-          (product) => product.categoryId === findedCategory?.id,
-        );
-        if (filteredProducts.length > 0)
-          setCategoryProducList(filteredProducts);
-
-        return setCurrentCategory(findedCategory);
-      }
-    };
-
-    findCategory();
-  }, [categories, products, params]);
-
-  //* JSX :
+  const { data: tags, isLoading: loading_tags } = useQuery({
+    queryKey: ["tags"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("tags");
+      return result.data.data.tags as ITag[];
+    },
+  });
 
   return (
     <section className="category-page">
-      <h2>{currentCategory?.title}</h2>
-      <div className="product-list">
-        {categoryProductList.map((product) => (
-          <Product
-            key={product.id}
-            product={product}
-            tag={tags.find((tag) => tag.id === product.tagId) || null}
-          />
-        ))}
-      </div>
+      {!loading_products && !loading_category && !loading_tags && (
+        <>
+          <h2>{category?.title}</h2>
+          <div className="product-list">
+            {products.map((product) => (
+              <Product
+                key={product.id}
+                product={product}
+                tag={tags?.find((tag) => tag.id === product.tagId) || null}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }

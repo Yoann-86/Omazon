@@ -1,32 +1,36 @@
 import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 import DOMPurify from "dompurify";
 
 import "./ProductPage.scss";
+import type { IProduct } from "@/@Types";
 
-import type { RootState } from "@/store/store";
+import { axiosInstance } from "@/infrastructure/api/axios";
 import AddToCartBtn from "@/Components/Common/Buttons/AddToCartBtn/AddToCartBtn";
 
 function ProductPage() {
   const API_URL = import.meta.env.VITE_LOCAL_API_URL;
   const params = useParams();
 
-  // Store states :
-  const product = useSelector((state: RootState) =>
-    state.productStore.products.find(
-      (product) => product.id === Number(params.id),
-    ),
-  );
+  const { data: product, isLoading: loading_products } = useQuery({
+    queryKey: ["products", "id", `${params.id}`],
+    enabled: !!params.id,
+    queryFn: async () => {
+      const result = await axiosInstance.get(`products?id=${params.id}`);
+      console.log(result.data);
+      return result.data.data.product as IProduct;
+    },
+  });
 
-  // Local variables :
-  const pricePrimary = product?.price.toString().split(".")[0];
-  const priceDecimal = product?.price.toString().split(".")[1];
+  const pricePrimary =
+    !loading_products && product?.price.toString().split(".")[0];
+  const priceDecimal =
+    !loading_products && product?.price.toString().split(".")[1];
   const cleanHtml = product
     ? DOMPurify.sanitize(product.description, { FORBID_TAGS: ["img"] })
     : "";
 
-  // Effects :
   useEffect(() => {
     const scrollToTop = () => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -35,7 +39,7 @@ function ProductPage() {
     scrollToTop();
   }, []);
 
-  if (!product) return <Navigate to="/404" replace />;
+  if (!loading_products && !product) return <Navigate to="/404" replace />;
 
   return (
     <section className="product-page">

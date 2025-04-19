@@ -1,29 +1,41 @@
-import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+
 import "./Products.scss";
-import type { RootState } from "@/store/store";
+import type { IProduct, ITag } from "@/@Types";
+
+import { axiosInstance } from "@/infrastructure/api/axios";
 import Product from "@/Components/Common/ProductCard/ProductCard";
 
 function Products() {
-  // Store state :
-  // #1
-  const products = useSelector(
-    (state: RootState) => state.productStore.products,
-  );
-  // #2
-  const tags = useSelector((state: RootState) => state.tagStore.tags);
+  const { data: products = [], isLoading: loading_products } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("products");
+      return result.data.data.products as IProduct[];
+    },
+  });
 
-  //* JSX
+  const { data: tags, isLoading: loading_tags } = useQuery({
+    queryKey: ["tags"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("tags");
+      return result.data.data.tags as ITag[];
+    },
+  });
+
   return (
     <div className="products">
       <h2 className="products--title">Tous nos produits</h2>
       <div className="products--list">
-        {products?.map((product) => (
-          <Product
-            key={product.id}
-            product={product}
-            tag={tags.find((tag) => tag.id === product.tagId) || null}
-          />
-        ))}
+        {!loading_products &&
+          !loading_tags &&
+          products?.map((product) => (
+            <Product
+              key={product.id}
+              product={product}
+              tag={tags?.find((tag) => tag.id === product.tagId) || null}
+            />
+          ))}
       </div>
     </div>
   );

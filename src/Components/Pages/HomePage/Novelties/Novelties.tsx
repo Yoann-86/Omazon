@@ -1,34 +1,44 @@
-import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 
 import "./Novelties.scss";
+import type { IProduct, ITag } from "@/@Types";
 
-import type { RootState } from "@/store/store";
+import { axiosInstance } from "@/infrastructure/api/axios";
 import Product from "@/Components/Common/ProductCard/ProductCard";
-import groupByKeyWithValue from "@/utils/groupByKeyWithFilter";
 
 function Novelties() {
-  // Store state :
-  const products = useSelector(
-    (state: RootState) => state.productStore.products,
-  );
+  const { data: tagId, isLoading: loading_tagId } = useQuery({
+    queryKey: ["tags", "tagId", "new"],
+    queryFn: async () => {
+      const result = await axiosInstance.get("tags");
+      const newTag = result.data.data.tags.find(
+        (tag: ITag) => tag.type === "new",
+      );
+      return newTag.id as number;
+    },
+  });
 
-  const noveltiesTagId = useSelector(
-    (state: RootState) =>
-      state.tagStore.tags.find((tag) => tag.type === "new")?.id as number,
-  );
+  const { data: products = [], isLoading: loading_products } = useQuery({
+    queryKey: ["products", "new"],
+    enabled: !!tagId,
+    queryFn: async () => {
+      const result = await axiosInstance.get("products");
+      const newProducts = result.data.data.products.filter(
+        (product: IProduct) => product.tagId === tagId,
+      );
+      return newProducts as IProduct[];
+    },
+  });
 
-  const newProducts =
-    groupByKeyWithValue(products, "tagId", noveltiesTagId)[noveltiesTagId] ||
-    [];
-
-  //* JSX
   return (
     <div className="novelties desktop-ui">
       <h2 className="novelties-title">Nouveautés</h2>
       <div className="novelties-list">
-        {newProducts.map((product) => (
-          <Product key={product.id} product={product} tag={null} />
-        ))}
+        {!loading_products &&
+          !loading_tagId &&
+          products.map((product) => (
+            <Product key={product.id} product={product} tag={null} />
+          ))}
       </div>
     </div>
   );
