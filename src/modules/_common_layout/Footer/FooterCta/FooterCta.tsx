@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import "modules/_common_layout/Footer/FooterCta/FooterCta.scss";
 
 function FooterCta() {
@@ -13,7 +14,9 @@ function FooterCta() {
         <button type="button">Devenez vendeur sur Omazon</button>
       </div>
       <div className="footer-cta--footer-logo">
-        <img src="/logos/omazon.svg" alt="Logo Omazon" />
+        <Link to="/" aria-label="Retour à l'accueil">
+          <img src="/logos/omazon.svg" alt="Logo Omazon" />
+        </Link>
       </div>
     </div>
   );

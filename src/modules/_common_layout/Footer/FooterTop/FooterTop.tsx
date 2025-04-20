@@ -6,15 +6,15 @@ function FooterTop() {
   };
 
   return (
-    <div className="footer-top">
-      <button
-        type="button"
-        className="button-reset footer-top--btn"
-        onClick={scrollToTop}
-      >
-        Retour en haut
-      </button>
-    </div>
+    <button
+      type="button"
+      className="button-reset footer-top--btn"
+      onClick={scrollToTop}
+    >
+      <div className="footer-top">
+        <p>Retour en haut</p>
+      </div>
+    </button>
   );
 }
 

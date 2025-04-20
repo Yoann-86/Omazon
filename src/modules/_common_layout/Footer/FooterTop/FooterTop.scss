@@ -10,9 +10,9 @@
   &--btn {
     font: variables.$text-s-bold;
     color: variables.$main-lowest;
-  
-    // &:hover {
-      
-    // }
+    
+    &:hover > .footer-top {
+      background-color: variables.$main-medium-light;
+    }
   }
 }
