@@ -2,7 +2,7 @@ import "modules/_common_layout/Footer/FooterLegals/FooterLegals.scss";
 
 function FooterLegals() {
   return (
-    <div className="footer-legals">
+    <div className="footer-legals" aria-label="Mentions légales">
       <div className="footer-legals--list">
         <a href="/">Conditions générales de vente</a>
         <a href="/">Vos informations personnelles</a>

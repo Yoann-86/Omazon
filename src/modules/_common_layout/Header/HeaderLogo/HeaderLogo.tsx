@@ -3,11 +3,9 @@ import "modules/_common_layout/Header/HeaderLogo/HeaderLogo.scss";
 
 function HeaderLogo() {
   return (
-    <h1>
-      <Link to="/">
-        <img src="/logos/omazon.svg" alt="paizjd" />
-      </Link>
-    </h1>
+    <Link to="/" aria-label="Omazon - Retour à l'accueil">
+      <img src="/logos/omazon.svg" alt="Logo Omazon" />
+    </Link>
   );
 }
 

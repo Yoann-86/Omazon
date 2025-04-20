@@ -22,6 +22,7 @@ function Header() {
     <section
       className={!scroll ? "header" : "header header--scroll"}
       id="header"
+      aria-label="En-tête de la page"
     >
       <div className="desktop-ui">
         <HeaderLogo />

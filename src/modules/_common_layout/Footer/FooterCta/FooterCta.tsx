@@ -13,7 +13,7 @@ function FooterCta() {
         <button type="button">Devenez vendeur sur Omazon</button>
       </div>
       <div className="footer-cta--footer-logo">
-        <img src="/logos/omazon.svg" alt="" />
+        <img src="/logos/omazon.svg" alt="Logo Omazon" />
       </div>
     </div>
   );

@@ -86,12 +86,13 @@ function HeaderForm() {
 
   //* JSX
   return (
-    <form className="form">
+    <form className="form" aria-label="Formulaire de recherche">
       <select
         className="form-select mobile-ui--form"
         name="category-filter"
         id="category-filter"
         onChange={handleChangeSelectedCategory}
+        aria-label="Filtrer par catégorie"
       >
         <option className="form-select--default-option" value="">
           Toutes nos categories &#9662;
@@ -111,8 +112,13 @@ function HeaderForm() {
           onChange={handleChangeInputValue}
           onFocus={() => setOpenDialog(true)}
           onBlur={handleCloseDialog}
+          aria-label="Rechercher un produit"
         />
-        <dialog className="form-result-search" open={openDialog}>
+        <dialog
+          className="form-result-search"
+          open={openDialog}
+          aria-label="Résultats de la recherche"
+        >
           {resultLength > 0 ? (
             filteredProductList.map(
               (product) =>
@@ -128,12 +134,16 @@ function HeaderForm() {
                 ),
             )
           ) : (
-            <p>Pas de resultat</p>
+            <p>Aucun resultat</p>
           )}
         </dialog>
       </div>
-      <button className="form-button" type="button">
-        <img src="/icons/search.svg" alt="" />
+      <button
+        className="form-button"
+        type="button"
+        aria-label="Lancer la recherche"
+      >
+        <img src="/icons/search.svg" alt="Icone loupe" />
       </button>
     </form>
   );

@@ -5,7 +5,7 @@ import FooterTop from "./FooterTop/FooterTop";
 
 function Footer() {
   return (
-    <section className="footer">
+    <section className="footer" aria-label="Pied de page">
       <FooterTop />
       <FooterCta />
       <FooterLegals />

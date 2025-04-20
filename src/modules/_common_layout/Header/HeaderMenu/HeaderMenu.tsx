@@ -38,13 +38,14 @@ function HeaderMenu() {
             <img src="/icons/user.svg" alt="" />
           </Link>
         </div> */}
-        <div className="account" id="account">
+        <div className="account" id="account" aria-label="Menu de connexion">
           <p className="account-text">Bonjour, {userName}</p>
           <div className="account--frame1">
             <button
               className="account--frame1-button button-reset"
               type="button"
               onClick={handleOpenModal}
+              aria-label="Ouvrir le menu de connexion"
             >
               <p className="account--frame1-text">Compte et listes</p>
               <img
@@ -61,7 +62,7 @@ function HeaderMenu() {
           />
         </div>
 
-        <Link to="/cart" className="cart">
+        <Link to="/cart" className="cart" aria-label="Accéder au panier">
           <div className="cart-icon">
             <img className="cart-icon--img" src="/icons/cart.svg" alt="" />
             <p
@@ -70,6 +71,7 @@ function HeaderMenu() {
                   ? "cart-icon--count count-more"
                   : "cart-icon--count"
               }
+              aria-label="Nombre d'articles dans le panier"
             >
               {isLogged ? cartCount : 0}
             </p>

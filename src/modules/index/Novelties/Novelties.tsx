@@ -32,7 +32,7 @@ function Novelties() {
 
   return (
     <div className="novelties desktop-ui">
-      <h2 className="novelties-title">Nouveautés</h2>
+      <h1 className="novelties-title">Nouveautés</h1>
       <div className="novelties-list">
         {!loading_products &&
           !loading_tagId &&

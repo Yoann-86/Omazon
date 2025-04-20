@@ -50,36 +50,40 @@
 
 .cart{
   height: 100%;
+  
   width: 81px;
+  display: flex;
+  flex-direction: column;
 
   &-icon{
-    display: inline-block;
-    height: 34px;
+    position: relative;
+    
+    height: 100%;
     width: 38px;
   
     &--img {
-      position: relative;
-      left: -5px;
-      top: 26px;
+      position: absolute;
+      top: 35%;
+      left: -3px;
     }
 
     &--count {
+      position: absolute;
+      display: flex;
+      justify-content: center;
       color: variables.$brand-primary;
       font: variables.$text-m-bold;
-      position: relative;
-      left: 13px;
-      top: -12px;
-    }
-
-    .count-more{
-      left: 8px;
+      width: 100%;
+      top: 18%;
+      
     }
   }
 
   &-text {
-    display: inline-block;
-    font: variables.$menu-m-bold;
     
+    
+    align-self: start;
+    font: variables.$menu-m-bold;
   }
 }
 

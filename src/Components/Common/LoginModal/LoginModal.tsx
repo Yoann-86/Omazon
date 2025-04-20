@@ -71,8 +71,8 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
         ? ""
         : openModal &&
           createPortal(
-            <>
-              <dialog className="account-modal">
+            <dialog className="account-modal">
+              <>
                 <div className="arrow-div" />
                 {!isLogged ? (
                   <>
@@ -143,8 +143,8 @@ function LoginForm({ domNode, openModal, toggleModal }: LoginFormProps) {
                     </button>
                   </div>
                 )}
-              </dialog>
-            </>,
+              </>
+            </dialog>,
             domNode,
           )}
     </>
