@@ -1,5 +1,5 @@
-export default interface ICart {
-  id: number
-  userId: number
-  productId: number
+export interface ICart {
+  id: number;
+  userId: number;
+  productId: number;
 }

@@ -1,7 +1,7 @@
 import type ICategory from "./category";
 import type ITag from "./tag";
 
-export default interface IProduct {
+export interface IProduct {
   id: number;
   title: string;
   price: number;
