@@ -61,6 +61,9 @@ export const Index = () => {
 
       <div className="cart-page-products" aria-label="Liste des produits">
         <h2 className="cart-page-products--title">Votre panier</h2>
+        <button type="button" className="cart-page-products--deselect">
+          Déselectionner tous les éléments
+        </button>
         <p className="cart-page-products--price">Prix</p>
         <div className="cart-page-products--items">
           {products_in_cart.map((product) => (

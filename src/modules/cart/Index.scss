@@ -34,6 +34,19 @@
         font: variables.$heading-m;
         grid-column: span 12;
       }
+
+      &--deselect {
+        border: none;
+        background: none;
+        font: variables.$info-s-regular;
+        color: variables.$link-default;
+        width: fit-content;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     
       &--price {
         font: variables.$text-s-regular;
