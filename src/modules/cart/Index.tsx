@@ -1,20 +1,40 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 import "modules/cart/Index.scss";
 
 import CartItem from "components/common/CartItem/CartItem";
 import type { RootState } from "store/store";
-import type { IProductCart } from "types";
-import transformIProductCart from "utils/transformIProductCart";
+import type { ICartListItem, IProductCart } from "types";
+import { useQuery } from "@tanstack/react-query";
+import { axiosInstance } from "infrastructure/api/axios";
 
 export const Index = () => {
   // Store state
   const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
   const cartList = useSelector((state: RootState) => state.cartStore.cart);
 
-  // Component states
-  const [productList, setProductList] = useState<IProductCart[]>([]);
+  const local_cart = localStorage.getItem("cart");
+  const cart_list: Array<ICartListItem> =
+    (local_cart && JSON.parse(local_cart)) || [];
+
+  const products_in_cart: IProductCart[] = [];
+
+  cart_list.map((cart_item) => {
+    const { data: product } = useQuery({
+      queryKey: ["products", "id", cart_item.product_id],
+      queryFn: async () => {
+        const result = await axiosInstance.get(
+          `products?id=${cart_item.product_id}`,
+        );
+        const product = result.data.data.product as IProductCart;
+        product.quantity = cart_item.quantity;
+        return product;
+      },
+    });
+    if (product) {
+      products_in_cart.push(product);
+    }
+  });
 
   // Variables
   const totalPrice = cartList
@@ -29,38 +49,31 @@ export const Index = () => {
     alert("C'est un faux site voyons, vous n'aller pas commander ! ");
   };
 
-  // Effects
-  useEffect(() => {
-    if (cartList && cartList?.length > 0) {
-      // Ajouter un champ quantité à chaque produit initialisé à 1
-      // Si l'id est déja présent, ne pas l'ajouter et ajouté 1 à l'existant
-      setProductList(transformIProductCart(cartList));
-    }
-  }, [cartList]);
-
   return (
     <section className="cart-page">
-      <h2>Votre panier</h2>
+      {/* <h2 className="cart-page-title">Votre panier</h2> */}
 
-      {/* Case 1 : Logged out user */}
-      {!isLogged && (
-        <p>Merci de vous authentifier pour accéder à votre panier</p>
-      )}
-
-      {/* Case 2 : Logged in user with empty cart */}
-      {isLogged && productList.length === 0 && (
+      {!isLogged && cart_list.length === 0 && (
         <p>
           Votre panier est vide, visiter nos produits pour commander un article
         </p>
       )}
 
-      {/* Case 3 : Logged in user */}
-      {isLogged &&
-        productList.length > 0 &&
-        productList.map((product) => (
-          <CartItem key={product.id} product={product} />
-        ))}
-      <div className="total-cart">
+      <div className="cart-page-products" aria-label="Liste des produits">
+        <h2 className="cart-page-products--title">Votre panier</h2>
+        <p className="cart-page-products--price">Prix</p>
+        <div className="cart-page-products--items">
+          {products_in_cart.map((product) => (
+            <CartItem key={product.id} product={product} />
+          ))}
+          <p className="subtotal">
+            Sous-total (x articles) :
+            <span className="subtotal-price">X,XX €</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="cart-page-total" aria-label="Total du panier">
         <p>Total panier</p>
         <p className="total-price">{totalPrice}€</p>
         <button

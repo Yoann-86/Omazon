@@ -1,22 +1,71 @@
 @use 'variables';
 
 .cart-page{
+  background-color: variables.$main-low;
   padding-inline: 24px;
   padding-block: 48px;
   padding-block-start: calc(48px + 72px);
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  
-  h2{
-    font: variables.$heading-m;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  width: 100%;
+  min-height: 100vh;
+  align-content: flex-start;
+
+  .separator{
+    width: 90%;
+    &:before{
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background-color: variables.$main-low;
+      position: relative;
+      // top: -12px;
+    }
   }
 
-  .total-cart{
-    align-self: flex-end;
-    border: 1px solid variables.$main-low;
+  .cart-page-products {
+    grid-column: span 9;
+    padding: 16px;
+    background-color: variables.$main-lowest;
+    
+      &--title {
+        font: variables.$heading-m;
+        grid-column: span 12;
+      }
+    
+      &--price {
+        font: variables.$text-s-regular;
+        color: variables.$main-medium-light;
+        width: 100%;
+        text-align: end;
+        border-bottom: 1px solid variables.$main-low;
+      }
+
+      &--items {
+        display: flex;
+        flex-direction: column;
+        column-gap: 12px;
+
+        .subtotal {
+          padding-block: 6px;
+          display: flex;
+          justify-content: flex-end;
+          font: variables.$text-l-medium;
+
+        }
+        .subtotal-price {
+          padding-inline-start: 4px;
+          font: variables.$text-l-bold;
+        }
+      }
+    
+  }
+  .cart-page-total{
+    grid-column: span 3;
+    background-color: variables.$main-lowest;
     height: fit-content;
-    width: fit-content;
     padding: 16px;
     
     p{

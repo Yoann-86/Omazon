@@ -29,6 +29,13 @@ $danger-low: #e06d88;
 $danger-medium: #cc0c39;
 $danger-high: #a30a2e;
 
+// success colors
+$success-medium: #0B7B3C;
+
+// link colors
+$link-default: #2162A1;
+
+
 // button colors
 $button-primary-default-background: #ff9900;
 $button-primary-default-border: #e58a00;
@@ -63,9 +70,12 @@ $heading-m: 26px/48px "amazon-ember-700" ;
 $heading-s: 21px/24px "amazon-ember-700";
 
 // Text
+$text-l-bold: 18px/24px "amazon-ember-700";
+$text-l-medium: 18px/24px "amazon-ember-500";
 $text-m-regular: 16px/24px "amazon-ember-400";
 $text-m-medium: 16px/24px "amazon-ember-500";
 $text-m-bold: 16px/24px "amazon-ember-700";
+$text-sm-bold: 14px/24px "amazon-ember-700";
 $text-s-regular: 13px/24px "amazon-ember-400";
 $text-s-bold: 13px/24px "amazon-ember-700";
 $text-xs-regular: 10px/24px "amazon-ember-400";
@@ -76,7 +86,11 @@ $menu-s-regular: 10px "amazon-ember-400";
 
 // Prices
 $price-xl-regular: 34px/36px "amazon-ember-400";
+$price-m-bold: 18px/24px "amazon-ember-700";
+$price-s-bold: 13px/24px "amazon-ember-700";
 
+// Info
+$info-s-regular: 12px/14px "amazon-ember-400";
 
 //* Effects
 

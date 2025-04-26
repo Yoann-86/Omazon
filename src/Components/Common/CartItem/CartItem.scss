@@ -1,102 +1,171 @@
 @use 'variables';
 
+.product-container {
+  padding-inline-start: 12px;
+  padding-block: 12px;
+  border-bottom: 1px solid variables.$main-low;
 
-.product-elm{
-  display: flex;
-  flex-direction: column;
-
-  .flex-stretch{
+  &--divider {
+    padding-block: 12px;
     display: flex;
-  }
-
-  &--details{
-    display: flex;
-    align-items: center;
-    gap: 24px;
     width: 100%;
-
-    img{
-      height: 100px;
-      width: 100px;
-      object-fit: contain;
-    }
-    
-  }
-
-  &--title{
-    width: 100%;
-
-    &:hover{
-      text-decoration: underline;
-      color: variables.$info-higher;
-    }
-  }
-
-
-  
-  .separator{
-    width: 100%;
-    &:before{
-      content: "";
-      display: block;
-      height: 2px;
-      width: 100%;
-      background-color: variables.$main-low;
-      position: relative;
-      top: -12px;
-    }
-
-  }
-
-  .right-section{
-    display: flex;
-    align-items: center;
     gap: 12px;
-    padding-inline-start: 2rem;
-    margin-inline-start: 2rem;
-    border-left: 1px solid variables.$main-low;
+  }
+}
 
-    .quantity-section{
+.checkbox {
+  display: flex;
+  align-items: center;
+  padding-inline-end: 12px;
+
+  input {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.image {
+  display: flex;
+  width: 180px;
+  height: 180px;
+  min-width: 180px;  
+  min-height: 180px; 
+  display: flex;
+  justify-content: center;
+  
+    img {
+      height: 100%;
+      object-fit: contain;
+      padding-inline-end: 8px;
+    }
+  }  
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    column-gap: 8px;
+    width: 100%;
+
+    &-description {
+      flex-grow: 1;
+      display: grid;
+      column-gap: 8px;
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: auto 1fr;
+      grid-template-areas: 
+        "title price"
+        "present price";
+
+      &--title{
+        flex-grow: 1;
+        grid-area: title;
+        width: 100%;
+        font: variables.$text-l-medium;
+      }
+      
+      &--price{
+        grid-area: price;
+        width: 6rem;
+        text-align: end;
+        font: variables.$price-s-bold;
+
+        .whole {
+          font: variables.$price-m-bold;
+        }
+      }
+
+      &--present{
+        .stock {
+          grid-area: present;
+          font: variables.$info-s-regular;
+          color: variables.$success-medium;
+        }
+
+        .present-container {
+          display: flex;
+          align-items: center;
+          padding-inline-start: 4px;
+          gap: 6px;
+
+          &--checkbox {
+            height: 16px;
+            width: 16px;
+          }
+
+          &--label {
+            display: inline-block;
+            font: variables.$text-s-regular;
+            
+            .detail-link {
+              color: variables.$link-default;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &-ctas {
       display: flex;
-      padding-inline: 8px;
+      align-items: center;
+      font: variables.$text-s-regular;
 
-      button{
+      &--quantity {
+        display: flex;
+        border: 2px solid variables.$brand-primary;
+        border-radius: 100px;
+        height: fit-content;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        font: variables.$text-s-bold;
+        
+        button {
+          border: none;
+          background: none;
+          cursor: pointer;
+          padding-block: none;
+          width: 20px;
+        }
+
+        p {
+          width: auto;
+          text-align: center;
+          flex-grow: 1;
+          font: variables.$text-sm-bold;
+        }
+        
+      }
+      
+      &--link {
         border: none;
         background: none;
         cursor: pointer;
-        text-justify: center;
+        color: variables.$link-default;
+        line-height: 1.1;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
 
-        &:hover{
-          font-weight: 700;
+      &--separator {
+        width: 20px;
+        &::before {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 100%;
+          background-color: variables.$main-low;
+          position: relative;
+          rotate: 90deg;
         }
       }
       
-      input {
-        width: 2rem;
-        height: fit-content;
-      }
-      
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-      
     }
-
-    &--delete-btn{
-      border: none;
-      background: none;
-      text-decoration: underline;
-      color: variables.$danger-high;
-      cursor: pointer;
-    }
-
-    &--price{
-      font: variables.$heading-s;
-      width: 6rem;
-      text-align: end;
-    }
+    
   }
-}

@@ -2,126 +2,107 @@ import { Link } from "@tanstack/react-router";
 
 import "./CartItem.scss";
 
-import type { AppDispatch, RootState } from "store/store";
 import type { IProductCart } from "types";
-import { useDispatch, useSelector } from "react-redux";
-import actionAsyncPostToCart from "store/thunks/thunkPostToCart";
-import actionAsyncFetchCart from "store/thunks/thunkFetchCarts";
-import actionAsyncRemoveFromCart from "store/thunks/thunkRemoveFromCart";
+import { useAddToCart } from "hooks/useAddToCart";
+import { useRemoveFromCart } from "hooks/useRemoveFromCart";
+import { useClearItemFromCart } from "hooks/useClearItemFromCart";
 
-interface CartItemProps {
-  product: IProductCart;
-}
-
-function CartItem({ product }: CartItemProps) {
+function CartItem({ product }: { product: IProductCart }) {
   const API_URL = import.meta.env.VITE_LOCAL_API_URL;
+  const add_to_cart = useAddToCart();
+  const remove_from_cart = useRemoveFromCart();
+  const clear_cart = useClearItemFromCart();
 
-  // Hooks :
-  const dispatch: AppDispatch = useDispatch();
-
-  // Store states :
-  const userId = useSelector(
-    (state: RootState) => state.appStore.login.user.id,
-  );
-  const token = useSelector(
-    (state: RootState) => state.appStore.login.user.accessToken,
-  );
-
-  // Handle functions:
-  const handleRemoveAnItem = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    event.preventDefault();
-    try {
-      const resultAction = await dispatch(
-        actionAsyncRemoveFromCart({
-          productId: product.id,
-          userId: userId,
-          deleteAll: false,
-        }),
-      );
-      if (actionAsyncRemoveFromCart.fulfilled.match(resultAction)) {
-        dispatch(actionAsyncFetchCart({ token }));
-      }
-    } catch (error) {
-      alert("Erreur de supression du panier");
-    }
-  };
-
-  const handleRemoveAllItems = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    event.preventDefault();
-    try {
-      const resultAction = await dispatch(
-        actionAsyncRemoveFromCart({
-          productId: product.id,
-          userId: userId,
-          deleteAll: true,
-        }),
-      );
-      if (actionAsyncRemoveFromCart.fulfilled.match(resultAction)) {
-        dispatch(actionAsyncFetchCart({ token }));
-      }
-    } catch (error) {
-      alert("Erreur de supression du panier");
-    }
-  };
-
-  const handleAddAnItem = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    event.preventDefault();
-    try {
-      const resultAction = await dispatch(
-        actionAsyncPostToCart({
-          productId: product.id,
-          userId: userId,
-        }),
-      );
-      if (actionAsyncPostToCart.fulfilled.match(resultAction)) {
-        dispatch(actionAsyncFetchCart({ token }));
-      }
-    } catch (error) {
-      alert("Erreur d'ajout au panier");
-    }
-  };
+  const price_whole = Math.floor(product.price * product.quantity);
+  const price_decimal = ((product.price * product.quantity) % 1)
+    .toFixed(2)
+    .slice(2);
 
   return (
-    <section className="product-elm">
-      <div className="separator" />
-      <div className="flex-stretch">
-        <div className="product-elm--details">
+    <article className="product-container">
+      <div className="product-container--divider">
+        <div className="checkbox">
+          <input type="checkbox" name="checkbox" id="checkbox" defaultChecked />
+        </div>
+
+        <div className="image">
           <Link to="/product/$id" params={{ id: product.id.toString() }}>
             <img src={`${API_URL}pictures/products/${product.image}`} alt="" />
           </Link>
-          <Link to="/product/$id" params={{ id: product.id.toString() }}>
-            <p className="product-elm--title">{product.title}</p>
-          </Link>
         </div>
-        <div className="right-section">
-          <div className="quantity-section">
-            <button type="button" onClick={handleRemoveAnItem}>
-              -
+
+        <div className="details">
+          <div className="details-description">
+            <Link
+              className="details-description--title"
+              to="/product/$id"
+              params={{ id: product.id.toString() }}
+            >
+              <p>{product.title}</p>
+            </Link>
+            <div className="details-description--price">
+              <p>
+                <span className="whole">{price_whole}</span>
+                <sup>
+                  <span className="decimal">{price_decimal}</span>
+                  <span className="symbol">€</span>
+                </sup>
+              </p>
+            </div>
+            <div className="details-description--present">
+              <p className="stock">En stock</p>
+              <div className="present-container">
+                <input
+                  type="checkbox"
+                  className="present-container--checkbox"
+                  name="present"
+                />
+                <label htmlFor="present" className="present-container--label">
+                  <p>
+                    Ceci sera un cadeau
+                    <Link className="detail-link" to="/">
+                      {" "}
+                      En savoir plus
+                    </Link>
+                  </p>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="details-ctas">
+            <div className="details-ctas--quantity">
+              <button type="button" onClick={() => remove_from_cart(product)}>
+                -
+              </button>
+              <p>{product.quantity}</p>
+              <button type="button" onClick={() => add_to_cart(product)}>
+                +
+              </button>
+            </div>
+            <span className="details-ctas--separator" />
+            <button
+              type="button"
+              className="details-ctas--link"
+              onClick={() => clear_cart(product)}
+            >
+              supprimer
             </button>
-            <input type="number" name="qty" id="qty" value={product.quantity} />
-            <button type="button" onClick={handleAddAnItem}>
-              +
+            <span className="details-ctas--separator" />
+            <button className="details-ctas--link" type="button">
+              Mettre de côté
+            </button>
+            <span className="details-ctas--separator" />
+            <button className="details-ctas--link" type="button">
+              Voir plus de produits similaires
+            </button>
+            <span className="details-ctas--separator" />
+            <button className="details-ctas--link" type="button">
+              Partager
             </button>
           </div>
-          <button
-            type="button"
-            className="right-section--delete-btn"
-            onClick={handleRemoveAllItems}
-          >
-            supprimer
-          </button>
-          <p className="right-section--price">
-            {(product.price * product.quantity).toFixed(2)}€
-          </p>
         </div>
       </div>
-    </section>
+    </article>
   );
 }
 
