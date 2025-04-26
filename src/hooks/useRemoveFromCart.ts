@@ -7,6 +7,7 @@ import { axiosInstance } from "infrastructure/api/axios";
 
 export const useRemoveFromCart = () => {
   //todo : add toast notification for success and error
+  //todo : add state to manage the cart
 
   const { mutate: syncCart } = useMutation({
     mutationFn: async ({ user_id, cart }: ICart) => {

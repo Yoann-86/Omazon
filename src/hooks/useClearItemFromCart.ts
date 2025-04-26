@@ -5,7 +5,7 @@ import type { RootState } from "store/store";
 import type { IProductCart, ICart, ICartListItem } from "types";
 import { axiosInstance } from "infrastructure/api/axios";
 
-export const useAddToCart = () => {
+export const useClearItemFromCart = () => {
   //todo : add toast notification for success and error
   //todo : add state to manage the cart
 
@@ -19,6 +19,7 @@ export const useAddToCart = () => {
       alert("Erreur d'ajout au panier");
     },
   });
+
   const user_id = useSelector(
     (state: RootState) => state.appStore.login.user.id,
   );
@@ -28,22 +29,24 @@ export const useAddToCart = () => {
     try {
       // local_cart is an array of {"product_id": number,"quantity": number}
       const local_cart = localStorage.getItem("cart");
-      let cart_list: Array<ICartListItem> = [];
+      let cart_list: Array<ICartListItem> = local_cart
+        ? JSON.parse(local_cart)
+        : [];
+
       if (local_cart) {
-        cart_list = JSON.parse(local_cart);
         const product_in_cart = cart_list.find(
           (item: ICartListItem) => item.product_id === product.id,
         );
         if (product_in_cart) {
-          product_in_cart.quantity += 1;
-        } else {
-          cart_list.push({ product_id: product.id, quantity: 1 });
+          cart_list = cart_list.filter(
+            (item: ICartListItem) => item.product_id !== product.id,
+          );
         }
       }
       localStorage.setItem("cart", JSON.stringify(cart_list));
 
       if (is_logged) {
-        syncCart({ user_id, cart: cart_list });
+        syncCart({ user_id, cart: [] });
       }
       return true;
     } catch (error) {
