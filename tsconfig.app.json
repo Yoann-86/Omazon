@@ -28,7 +28,8 @@
       "infrastructure/*": ["./src/infrastructure/*"],
       "store/*": ["./src/store/*"],
       "types": ["./src/@Types"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "hooks/*": ["./src/hooks/*"]
     }
   }
 }

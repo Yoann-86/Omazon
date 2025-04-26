@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import DOMPurify from "dompurify";
 
 import "modules/product/Index.scss";
-import type { IProduct } from "types";
+import type { IProduct, IProductCart } from "types";
 
 import { axiosInstance } from "infrastructure/api/axios";
 import AddToCartBtn from "components/common/Buttons/AddToCartBtn/AddToCartBtn";
@@ -16,11 +16,10 @@ export const Index = () => {
   });
 
   const { data: product, isLoading: loading_products } = useQuery({
-    queryKey: ["products", "id", `${params.id}`],
+    queryKey: ["products", "id", params.id],
     enabled: !!params.id,
     queryFn: async () => {
       const result = await axiosInstance.get(`products?id=${params.id}`);
-      console.log(result.data);
       return result.data.data.product as IProduct;
     },
   });
@@ -73,7 +72,7 @@ export const Index = () => {
                 </p>
               </div>
 
-              {product && <AddToCartBtn product={product} />}
+              <AddToCartBtn product={product as IProductCart} />
             </div>
             {/* biome-ignore lint/security/noDangerouslySetInnerHtml: HTML sanitized with DomPurify */}
             <p dangerouslySetInnerHTML={{ __html: cleanHtml }} />

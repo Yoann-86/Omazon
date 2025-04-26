@@ -1,53 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import "components/common/Buttons/AddToCartBtn/AddToCartBtn.scss";
 
-import "./AddToCartBtn.scss";
+import type { IProductCart } from "types";
+import { useAddToCart } from "hooks/useAddToCart";
 
-import type { AppDispatch, RootState } from "store/store";
-import actionAsyncPostToCart from "store/thunks/thunkPostToCart";
-import actionAsyncFetchCart from "store/thunks/thunkFetchCarts";
-import type { IProduct } from "types";
-
-interface AddtoCartBtnProps {
-  product: IProduct;
-}
-
-export default function AddToCartBtn({ product }: AddtoCartBtnProps) {
-  // Hooks :
-  const dispatch: AppDispatch = useDispatch();
-
-  // Store states:
-  const userId = useSelector(
-    (state: RootState) => state.appStore.login.user.id,
-  );
-  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
-  const token = useSelector(
-    (state: RootState) => state.appStore.login.user.accessToken,
-  );
-
-  // Handle functions :
-  const handleAddToCart = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    event.preventDefault();
-    if (isLogged) {
-      try {
-        const resultAction = await dispatch(
-          actionAsyncPostToCart({
-            productId: product.id,
-            userId: userId,
-          }),
-        );
-        if (actionAsyncPostToCart.fulfilled.match(resultAction)) {
-          dispatch(actionAsyncFetchCart({ token }));
-        }
-      } catch (error) {
-        alert("Erreur d'ajout au panier");
-      }
-    } else alert("Vous devez être connecté !");
-  };
+export default function AddToCartBtn({ product }: { product: IProductCart }) {
+  const add_to_cart = useAddToCart();
 
   return (
-    <button className="button-add-cart" type="button" onClick={handleAddToCart}>
+    <button
+      className="button-add-cart"
+      type="button"
+      onClick={() => add_to_cart(product)}
+    >
       Ajouter au panier
     </button>
   );
