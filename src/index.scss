@@ -57,20 +57,3 @@
   
 }
 
-.button-confirm-cart{
-
-  height: 36px;
-  padding-inline: 16px;
-  border-radius: 36px;
-  font: variables.$text-s-regular;
-  color: variables.$main-higher;
-  background-color: variables.$button-primary-default-background;
-  border: 1px solid variables.$button-primary-default-border;
-  cursor: pointer;
-
-  &:hover{
-    background-color: variables.$button-primary-hover-background;
-    border: 1px solid variables.$button-primary-hover-border;
-  }
-
-}

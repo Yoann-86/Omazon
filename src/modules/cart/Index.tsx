@@ -10,8 +10,7 @@ import { axiosInstance } from "infrastructure/api/axios";
 
 export const Index = () => {
   // Store state
-  const isLogged = useSelector((state: RootState) => state.appStore.isLogged);
-  const cartList = useSelector((state: RootState) => state.cartStore.cart);
+  const is_logged = useSelector((state: RootState) => state.appStore.isLogged);
 
   const local_cart = localStorage.getItem("cart");
   const cart_list: Array<ICartListItem> =
@@ -37,23 +36,26 @@ export const Index = () => {
   });
 
   // Variables
-  const totalPrice = cartList
+  const total_price = products_in_cart
     .reduce((sum, product) => sum + product.price, 0)
     .toFixed(2);
+
+  const article_count = products_in_cart.reduce(
+    (sum, product) => sum + product.quantity,
+    0,
+  );
 
   // Handle functions
   const handleSubmitCart = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    alert("C'est un faux site voyons, vous n'aller pas commander ! ");
+    alert("C'est un faux site, on ne peut pas commander !");
   };
 
   return (
     <section className="cart-page">
-      {/* <h2 className="cart-page-title">Votre panier</h2> */}
-
-      {!isLogged && cart_list.length === 0 && (
+      {!is_logged && cart_list.length === 0 && (
         <p>
           Votre panier est vide, visiter nos produits pour commander un article
         </p>
@@ -69,16 +71,19 @@ export const Index = () => {
           {products_in_cart.map((product) => (
             <CartItem key={product.id} product={product} />
           ))}
+
           <p className="subtotal">
-            Sous-total (x articles) :
-            <span className="subtotal-price">X,XX €</span>
+            Sous-total ({article_count} articles) :
+            <span className="subtotal-price">{total_price} €</span>
           </p>
         </div>
       </div>
 
       <div className="cart-page-total" aria-label="Total du panier">
-        <p>Total panier</p>
-        <p className="total-price">{totalPrice}€</p>
+        <p className="subtotal">
+          Sous-total ({article_count} articles) :
+          <span className="subtotal-price">{total_price} €</span>
+        </p>
         <button
           type="button"
           className="button-confirm-cart"

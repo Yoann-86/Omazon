@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { FaRegTrashCan, FaMinus, FaPlus } from "react-icons/fa6";
 
 import "./CartItem.scss";
 
@@ -7,7 +8,11 @@ import { useAddToCart } from "hooks/useAddToCart";
 import { useRemoveFromCart } from "hooks/useRemoveFromCart";
 import { useClearItemFromCart } from "hooks/useClearItemFromCart";
 
-function CartItem({ product }: { product: IProductCart }) {
+function CartItem({
+  product,
+}: {
+  product: IProductCart;
+}) {
   const API_URL = import.meta.env.VITE_LOCAL_API_URL;
   const add_to_cart = useAddToCart();
   const remove_from_cart = useRemoveFromCart();
@@ -17,12 +22,13 @@ function CartItem({ product }: { product: IProductCart }) {
   const price_decimal = ((product.price * product.quantity) % 1)
     .toFixed(2)
     .slice(2);
+  const is_single = product.quantity === 1;
 
   return (
     <article className="product-container">
       <div className="product-container--divider">
         <div className="checkbox">
-          <input type="checkbox" name="checkbox" id="checkbox" defaultChecked />
+          <input type="checkbox" name="checkbox" id="checkbox" />
         </div>
 
         <div className="image">
@@ -71,12 +77,19 @@ function CartItem({ product }: { product: IProductCart }) {
           </div>
           <div className="details-ctas">
             <div className="details-ctas--quantity">
-              <button type="button" onClick={() => remove_from_cart(product)}>
-                -
-              </button>
+              {is_single ? (
+                <button type="button" onClick={() => remove_from_cart(product)}>
+                  <FaRegTrashCan className="icon" />
+                </button>
+              ) : (
+                <button type="button" onClick={() => remove_from_cart(product)}>
+                  <FaMinus className="icon" />
+                </button>
+              )}
+
               <p>{product.quantity}</p>
               <button type="button" onClick={() => add_to_cart(product)}>
-                +
+                <FaPlus />
               </button>
             </div>
             <span className="details-ctas--separator" />

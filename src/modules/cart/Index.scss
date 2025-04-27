@@ -7,7 +7,7 @@
   padding-block-start: calc(48px + 72px);
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 20px;
+  gap: 16px;
   width: 100%;
   min-height: 100vh;
   align-content: flex-start;
@@ -38,7 +38,7 @@
       &--deselect {
         border: none;
         background: none;
-        font: variables.$info-s-regular;
+        font: variables.$text-sm-regular;
         color: variables.$link-default;
         width: fit-content;
         cursor: pointer;
@@ -69,14 +69,18 @@
 
         }
         .subtotal-price {
+          display: flex;
           padding-inline-start: 4px;
           font: variables.$text-l-bold;
+          flex-wrap: nowrap;
         }
       }
     
   }
   .cart-page-total{
     grid-column: span 3;
+    display: flex;
+    flex-direction: column;
     background-color: variables.$main-lowest;
     height: fit-content;
     padding: 16px;
@@ -89,6 +93,23 @@
       font: variables.$heading-s;
     }
 
+    .button-confirm-cart{
+      height: 30px;
+      padding-inline: 16px;
+      border-radius: 36px;
+      margin-top: 8px;
+      font: variables.$text-s-regular;
+      color: variables.$main-higher;
+      background-color: variables.$button-primary-default-background;
+      border: 1px solid variables.$button-primary-default-border;
+      cursor: pointer;
+    
+      &:hover{
+        background-color: variables.$button-primary-hover-background;
+        border: 1px solid variables.$button-primary-hover-border;
+      }
+    
+    }
   }
 
 }

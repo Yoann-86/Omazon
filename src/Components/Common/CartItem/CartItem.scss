@@ -122,7 +122,6 @@
         justify-content: center;
         align-items: center;
         width: 100px;
-        font: variables.$text-s-bold;
         
         button {
           border: none;
@@ -130,6 +129,8 @@
           cursor: pointer;
           padding-block: none;
           width: 20px;
+          object-fit: contain;
+          font: variables.$text-l-bold;
         }
 
         p {
